@@ -13,7 +13,7 @@ body {
 .container {
   width: 90%;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
 section {
@@ -48,7 +48,8 @@ header h1 {
   line-height: 1.5;
   margin: 0 0 0 -40px;
   font-weight: bold;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family: Georgia, serif, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-style: italic;
   color: #b5e853;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
                0 0 5px rgba(181, 232, 83, 0.1),
@@ -58,7 +59,7 @@ header h1 {
 }
 
 header h1:before {
-  content: "./ ";
+  content: ">> ";
   font-size: 24px;
 }
 
@@ -66,6 +67,10 @@ header h2 {
   font-size: 18px;
   font-weight: 300;
   color: #666;
+}
+
+#downloads {
+  text-align: right;
 }
 
 #downloads .btn {
