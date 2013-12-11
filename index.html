@@ -7,40 +7,66 @@
 		<meta name="keywords" content="莫奇,Moky,9527,小七,江湖中学,化州一中,华南理工大学,scut,腾讯,tencent,芝兰玉树,slanissue,贝瓦网,beva" />
 		<meta name="description" content="莫奇(moKy),男,广东省化州市江湖镇人士,毕业于华南理工大学数学系,曾就职于腾讯公司。" />
 		
-		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/theme.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+		
+		<script type="text/javascript" src="js/common.js"></script>
 	</head>
 	
 	<body>
-		
 		<header>
-			<div class="container">
-				<h1>moky.github.com</h1>
-			</div>
+			<h1>moky.github.com</h1>
 		</header>
 		
-		<div class="container">
-			<section id="main_content">
-				<p>广东省化州市江湖镇人氏；</p>
+	<div id="wrap">
+		
+		<aside>
+			<h3>文章列表</h3>
+			<ul id="aside"></ul>
+			<script language="javascript">
+				window.onload = function() {
+					var src="widgets/aside.html";
+					var template = src;
+					
+					var widget = new tarsier.Widget("#aside");
+					widget.show = function(target) {
+						if (!this.template || !this.data) return;
+						if (!target) {
+							if (!this.target) return;
+							target = this.target;
+						}
+						
+						$.template(target, this.template);
+						$.tmpl(target, this.data.url).appendTo(target);
+					};
+					widget.query(template, src="sitemap.xml");
+				};
+			</script>
+		</aside>
+		
+		<article>
+			<p>广东省化州市江湖镇人氏；
+				一个迷失在追求财务自由道路上的理论物理学者；
 				
-				<p>一个迷失在追求财务自由道路上的理论物理学者；</p>
+				崇尚 Apple 所倡导的文化，
+				尊敬像 Google 一样怀着远大理想的人群，
+				崇拜像 Einstein 一样伟大的科学家；
 				
-				<p>崇尚 Apple 所倡导的文化，<br/>
-				尊敬像 Google 一样怀着远大理想的人群，<br/>
-				崇拜像 Einstein 一样伟大的科学家；</p>
-				
-				<p>喜欢独立思考问题，<br/>
-				有强烈的使命感，<br/>
-				相信风雨过后总会有彩虹...</p>
-			</section>
-		</div>
+				喜欢独立思考问题，
+				有强烈的使命感，
+				相信风雨过后总会有彩虹...
+			
+			
+			</p>
+		</article>
+		
+		<div class="clear">&nbsp;</div>
 		
 		<footer>
-			<div class="container" id="downloads">
-				<a href="https://github.com/moky" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-			</div>
+			<div>&copy; 2013 moKy</div>
 		</footer>
 		
+	</div>
 	</body>
 </html>

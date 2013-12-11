@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>文章模板</title>
+		
+		<link rel="stylesheet" type="text/css" href="../css/article.css" />
+	</head>
+	
+	<body>
+		
+		<div id="wrap">
+			<header>
+				<div><a href="../index.html">&lt;&lt; BACK</a></div>
+			</header>
+			
+			<div id="main">
+				<aside>
+					<h3>文章列表</h3>
+					<ul id="aside"></ul>
+					<script language="javascript">
+						$(document).ready(function() {
+							var src="../widgets/aside.html";
+							var template = src;
+							
+							var widget = new tarsier.Widget("#aside");
+							widget.show = function(target) {
+								if (!this.template || !this.data) return;
+								if (!target) {
+									if (!this.target) return;
+									target = this.target;
+								}
+								
+								$.template(target, this.template);
+								$.tmpl(target, this.data.url).appendTo(target);
+							};
+							widget.query(template, src="../sitemap.xml");
+						});
+					</script>
+				</aside>
+				
+				<article>
+					
+					<h1 id="title">${#title}</h1>
+					<p id="body">${#body}</p>
+					<div id="author">${#author}</div>
+					
+				</article>
+				
+				<div class="clear">&nbsp;</div>
+			</div>
+			
+			<footer>
+				
+				<div id="copyright">&copy;2013 moKy</div>
+				
+			</footer>
+		</div>
+		
+	</body>
+</html>

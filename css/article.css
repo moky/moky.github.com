@@ -1,0 +1,26 @@
+
+@import url(theme.css);
+
+#main {
+}
+
+article {
+	width: 700px;
+	padding: 0px 10px;
+}
+
+#author {
+	text-align: right;
+	color: yellow;
+}
+
+aside {
+	padding: 5px 8px;
+	float: right;
+	width: 240px;
+	border: 1px solid #333333;
+}
+
+.clear {
+	clear: both;
+}
