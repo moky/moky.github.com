@@ -13,12 +13,28 @@ header {
 	color: yellow;
 }
 
+table {
+	width: 80%;
+	margin: 10px auto;
+}
+
+thead {
+	font-style: italic;
+	font-weight: 700;
+}
+
+td {
+	border: 1px solid #666666;
+	padding: 5px 8px;
+	background-color: #222222;
+}
 
 @media screen and (min-device-width: 960px) {
 	
 	article {
 		width: 700px;
 		padding: 0px 10px;
+		float: left;
 	}
 	
 	aside {
@@ -28,11 +44,7 @@ header {
 		border: 1px solid #333333;
 	}
 	
-	article {
-		float: left;
-	}
 }
-
 
 .clear {
 	clear: both;

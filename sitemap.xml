@@ -7,4 +7,11 @@
 		<changefreq>daily</changefreq>
 		<priority>1.0</priority>
 	</url>
+	<url>
+		<title>如何写IT简历</title>
+		<loc>http://moky.github.io/a/how-to-write-resume.html</loc>
+		<lastmod>2013-12-11</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
 </urlset>
