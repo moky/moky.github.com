@@ -1,11 +1,11 @@
-
+;
 /**
  *  Author:
  *      Moky @ Dec. 10, 2013
  */
 
-(function()
-{
+(function() {
+	
 	/**
 	 *  Environment variables
 	 */
@@ -51,15 +51,17 @@
 	}
 	
 	// import all dependences
-	importJS({src: "https://raw.github.com/moky/Tarsier/master/tarsier.js"});
-}
- )();
-
-/**
- *
- *    Main entrance
- *
- */
-if (typeof(main) == "function") {
-	window.onload = main;
-}
+	importJS({src: "https://raw.github.com/moky/Tarsier/master/tarsier.js",
+			 callback: function() {
+				/**
+				 *
+				 *    Main entrance
+				 *
+				 */
+				if (typeof(main) == "function") {
+					tarsier.ready(main);
+				}
+			 }
+	});
+	
+})();
