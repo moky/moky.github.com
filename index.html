@@ -16,6 +16,25 @@
 		<link rel="stylesheet" type="text/css" href="css/theme.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
 		
+		<script language="javascript">
+			function main() {
+				var src="widgets/aside.html";
+				var template = src;
+				
+				var widget = new tarsier.Widget("#aside");
+				widget.show = function(target) {
+					if (!this.template || !this.data) return;
+					if (!target) {
+						if (!this.target) return;
+						target = this.target;
+					}
+					
+					$.template(target, this.template);
+					$.tmpl(target, this.data.url).appendTo(target);
+				};
+				widget.query(template, src="sitemap.xml");
+			};
+		</script>
 		<script type="text/javascript" src="js/common.js"></script>
 	</head>
 	
@@ -48,25 +67,6 @@
 		<aside>
 			<h3>文章列表</h3>
 			<ul id="aside"></ul>
-			<script language="javascript">
-				function main() {
-					var src="widgets/aside.html";
-					var template = src;
-					
-					var widget = new tarsier.Widget("#aside");
-					widget.show = function(target) {
-						if (!this.template || !this.data) return;
-						if (!target) {
-							if (!this.target) return;
-							target = this.target;
-						}
-						
-						$.template(target, this.template);
-						$.tmpl(target, this.data.url).appendTo(target);
-					};
-					widget.query(template, src="sitemap.xml");
-				};
-				</script>
 		</aside>
 		
 		
