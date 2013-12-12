@@ -1,12 +1,11 @@
 
 @import url(theme.css);
 
-#main {
+header {
+	padding: 20px 0;
 }
 
-article {
-	width: 700px;
-	padding: 0px 10px;
+#main {
 }
 
 #author {
@@ -14,12 +13,26 @@ article {
 	color: yellow;
 }
 
-aside {
-	padding: 5px 8px;
-	float: right;
-	width: 240px;
-	border: 1px solid #333333;
+
+@media screen and (min-device-width: 960px) {
+	
+	article {
+		width: 700px;
+		padding: 0px 10px;
+	}
+	
+	aside {
+		padding: 5px 8px;
+		float: right;
+		width: 240px;
+		border: 1px solid #333333;
+	}
+	
+	article {
+		float: left;
+	}
 }
+
 
 .clear {
 	clear: both;

@@ -40,22 +40,6 @@ header {
 	margin: 0 0 40px 0;
 }
 
-header h1 {
-	font-size: 30px;
-	line-height: 1.5;
-	width: 980px;
-	margin: 0 auto;
-	font-weight: bold;
-	font-family: Georgia, serif, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-	font-style: italic;
-	color: #b5e853;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
-	0 0 5px rgba(181, 232, 83, 0.1),
-	0 0 10px rgba(181, 232, 83, 0.1);
-	letter-spacing: -1px;
-	-webkit-font-smoothing: antialiased;
-}
-
 article, footer {
 	padding: 5px 40px;
 }
@@ -238,13 +222,36 @@ a {
 	zoom:1;
 }
 
-aside {
-	padding: 5px 8px;
-	float: right;
-	width: 360px;
-	border: 1px solid #333333;
-}
-
 .clear {
 	clear: both;
+}
+
+@media screen and (min-device-width: 960px) {
+	
+	header h1 {
+		font-size: 30px;
+		line-height: 1.5;
+		width: 980px;
+		margin: 0 auto;
+		font-weight: bold;
+		font-family: Georgia, serif, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+		font-style: italic;
+		color: #b5e853;
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+		0 0 5px rgba(181, 232, 83, 0.1),
+		0 0 10px rgba(181, 232, 83, 0.1);
+		letter-spacing: -1px;
+		-webkit-font-smoothing: antialiased;
+	}
+	
+	aside {
+		padding: 5px 8px;
+		float: right;
+		width: 360px;
+		border: 1px solid #333333;
+	}
+	
+	article {
+		float: left;
+	}
 }
