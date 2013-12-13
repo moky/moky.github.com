@@ -51,7 +51,7 @@
 	}
 	
 	// import all dependences
-	importJS({src: __PATH__ + "../Tarsier/tarsier.js",
+	importJS({src: "http://moky.github.io/Tarsier/tarsier.js",
 			 callback: function() {
 				/**
 				 *
