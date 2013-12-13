@@ -8,12 +8,12 @@ header {
 article #title {
 	font-size: 24px;
 	line-height: 1.5;
-	text-align: center;
-	margin: 10px auto;
 	font-weight: bold;
 	font-family: Georgia, serif, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
 	font-style: italic;
 	color: #b5e853;
+	padding: 5px 0;
+	border-bottom: 1px dashed #b5e853;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
 	0 0 5px rgba(181, 232, 83, 0.1),
 	0 0 10px rgba(181, 232, 83, 0.1);
