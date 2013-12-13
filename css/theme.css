@@ -88,7 +88,7 @@ header h1:before {
 	font-size: 24px;
 }
 
-article p {
+article {
 	white-space: pre-line;
 	word-wrap: break-word;
 	word-break: break-all;
