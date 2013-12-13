@@ -29,6 +29,8 @@
 						target = this.target;
 					}
 					
+					$(target).html("");
+					
 					$.template(target, this.template);
 					$.tmpl(target, this.data.url).appendTo(target);
 				};
