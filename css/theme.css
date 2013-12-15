@@ -1,4 +1,3 @@
-
 @import url(common.css);
 
 body {
@@ -61,7 +60,7 @@ img {
 }
 
 /*******************************************/
-@media screen and (min-device-width: 960px) {
+@media screen and (min-device-width: 768px) {
 	#wrap {
 		width: 980px;
 		margin: 0 auto;
