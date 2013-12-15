@@ -54,16 +54,21 @@
 function main() {
 	try {
 		
-		var template_path = "../templates/";
-		var template_file = "article.html";
+		var widget = new tarsier.Widget("#aside");
+		widget.show = function(target) {
+			if (!this.template || !this.data) return;
+			if (!target) {
+				if (!this.target) return;
+				target = this.target;
+			}
+			
+			$(target).html("");
+			
+			$.template(target, this.template);
+			$.tmpl(target, this.data.url).appendTo(target);
+		};
 		
-		tarsier.http.ajax({
-						  url: template_path + template_file,
-						  dataType: "html",
-						  //cache: false,
-						  success: function(data) { (new tarsier.Template(data, this.url)).apply(document); },
-						  error: function() { alert("Error loading template: " + template_file); }
-		});
+		widget.query("widgets/aside.html", "sitemap.xml");
 		
 	} catch(e) {
 		//alert("article.js: " + e);
