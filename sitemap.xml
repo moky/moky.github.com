@@ -14,4 +14,18 @@
 		<changefreq>daily</changefreq>
 		<priority>1.0</priority>
 	</url>
+	<url>
+		<title>“打击地球人专用”</title>
+		<loc>http://moky.github.io/a/you-are-not-the-center-of-the-universe.html</loc>
+		<lastmod>2013-12-16</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<title>宇宙的刻度</title>
+		<loc>http://moky.github.io/a/the-scale-of-the-universe.html</loc>
+		<lastmod>2013-12-16</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
 </urlset>
