@@ -55,7 +55,8 @@ td {
 	article embed {
 		width: 640px;
 		height: 480px;
-		margin: 20px 30px;
+		margin: 20px;
+		padding: 5px;
 		border: 1px solid #ebebeb;
 		box-shadow: 0 0 20px #ebebeb;
 		-webkit-box-shadow: 0 0 20px #ebebeb;
