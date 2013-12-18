@@ -78,7 +78,7 @@ qzone.template = {
 	categories: function(data) {
 		if (data == null || data.length == 0) return;
 		var qz = qzone();
-		//
+		// process template
 		var template = qz.categories;
 		var target = qz.target;
 		var widget = new tarsier.Widget(target);
@@ -86,7 +86,7 @@ qzone.template = {
 			widget.setData(data);
 			widget.queryTemplate({url: template});
 		}
-		// query data
+		// query articles with categories
 		for (var i = 0; i < data.length; ++i) {
 			tarsier.importJS(qz.getArticlesUrl(data[i].category, data[i].cateHex));
 		}
@@ -95,7 +95,12 @@ qzone.template = {
 	articles: function(data) {
 		if (data == null || data.length == 0) return;
 		var qz = qzone();
-		//
+		// blog url
+		var url = qz.uin == "1292823" ? "http://moky.qzone.qq.com/blog/" : "http://user.qzone.qq.com/" + qz.uin + "/blog/";
+		for (var i = 0; i < data.length; ++i) {
+			data[i].url = url + data[i].blogId;
+		}
+		// process template
 		var template = qz.articles;
 		var target = "#" + data[0].cateHex;
 		var widget = new tarsier.Widget(target);
