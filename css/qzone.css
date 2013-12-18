@@ -32,16 +32,13 @@
 		margin:2px;
 	}
 	
-	#qzone .category1 {
-		width: 420px;
-		margin: 20px;
-		padding: 5px 8px;
-		border: 1px solid #333333;
-	}
-	
 }
 
 #qzone li {
 	list-style: decimal inside;
 	color: yellow;
+}
+
+#qzone span {
+	color: gray;
 }
