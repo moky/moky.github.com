@@ -47,9 +47,8 @@
 	}
 	
 	// import all dependences
-	importJS(__PATH__ + "qzone.js");
 	
-	importJS("/~Moky/GitHub/Tarsier/tarsier.js", //"http://moky.github.io/Tarsier/tarsier.js",
+	importJS("http://moky.github.io/Tarsier/tarsier.js",
 			 function() {
 				/**
 				 *
@@ -61,6 +60,8 @@
 				}
 			 }
 	);
+	
+	importJS(__PATH__ + "qzone.js");
 	
 })();
 
