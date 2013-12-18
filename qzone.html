@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Q-Zone</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+
+		<meta name="viewport" content="width=device-width" />
+		<!--[if lt IE 9]>
+			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<script language="javascript">
+			function main() {
+				try {
+					
+					var url = document.location.href;
+					url = tarsier.http.parseURI(url);
+					
+					var uin = url.params.uin || "1292823";
+					
+					$("#title").html('<a href="http://user.qzone.qq.com/' + uin + '" target="qzone">'
+						+ uin + '.qzone.qq.com</a>');
+					
+					// load qzone
+					qzone(uin).templates("widgets/qzone-categories.html", "widgets/qzone-articles.html").apply("#qzone");
+					
+				} catch(e) {
+					alert("qzone.html: " + e);
+				}
+			}
+		</script>
+		<script type="text/javascript" src="js/common.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/qzone.css" />
+	</head>
+	
+	<body>
+		<header>
+			<h1 id="title">moky.github.com</h1>
+		</header>
+		
+	<div id="wrap">
+		
+		<div id="qzone"></div>
+		
+		<footer>
+			<div>&copy; 2013 moKy</div>
+		</footer>
+		
+	</div>
+		
+	</body>
+</html>

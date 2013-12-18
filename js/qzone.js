@@ -27,17 +27,14 @@ function _Callback(data) {
 
 //------------------------------------------------------------------------------
 
-var sharedQzoneManager = null;
+var _sharedQzoneManager = null;
 
-function qzone(args) {
-	if (!sharedQzoneManager) {
-		sharedQzoneManager = new qzone.Manager();
+function qzone(uin) {
+	if (_sharedQzoneManager == null) {
+		_sharedQzoneManager = new qzone.Manager();
 	}
-	
-	sharedQzoneManager.categories = args.categories;
-	sharedQzoneManager.articles = args.articles;
-	
-	return sharedQzoneManager;
+	if (uin) _sharedQzoneManager.uin = uin;
+	return _sharedQzoneManager;
 }
 
 //
@@ -47,24 +44,31 @@ qzone.Manager = function() {
 	// user info
 	this.uin = "1292823";
 	this.url = "http://b1.qzone.qq.com/cgi-bin/blognew/get_abs";
-	
 	// templages
 	this.categories = null;
 	this.articles = null;
-}
+	return this;
+};
 
 qzone.Manager.prototype.getCatUrl = function() {
 	return this.url + "?blogType=0&reqInfo=18&hostUin=" + this.uin;
-}
+};
 
-qzone.Manager.prototype.getArticleUrl = function(cat, hex) {
+qzone.Manager.prototype.getArticlesUrl = function(cat, hex) {
 	return this.url + "?blogType=0&reqInfo=1&hostUin=" + this.uin + "&num=100&cateName=" + cat + "&cateHex=" + hex;
-}
+};
+
+qzone.Manager.prototype.templates = function(categories, articles) {
+	if (categories) this.categories = categories;
+	if (articles) this.articles = articles;
+	return this;
+};
 
 qzone.Manager.prototype.apply = function(target) {
-	this.target = target;
+	if (target) this.target = target;
 	tarsier.importJS(this.getCatUrl());
-}
+	return this;
+};
 
 //
 // namespace qzone::template
@@ -73,9 +77,10 @@ qzone.template = {
 	// show category
 	categories: function(data) {
 		if (data == null || data.length == 0) return;
+		var qz = qzone();
 		//
-		var template = sharedQzoneManager.categories;
-		var target = sharedQzoneManager.target;
+		var template = qz.categories;
+		var target = qz.target;
 		var widget = new tarsier.Widget(target);
 		if (widget) {
 			widget.setData(data);
@@ -83,14 +88,15 @@ qzone.template = {
 		}
 		// query data
 		for (var i = 0; i < data.length; ++i) {
-			tarsier.importJS(sharedQzoneManager.getArticleUrl(data[i].category, data[i].cateHex));
+			tarsier.importJS(qz.getArticlesUrl(data[i].category, data[i].cateHex));
 		}
 	},
 	
 	articles: function(data) {
 		if (data == null || data.length == 0) return;
+		var qz = qzone();
 		//
-		var template = sharedQzoneManager.articles;
+		var template = qz.articles;
 		var target = "#" + data[0].cateHex;
 		var widget = new tarsier.Widget(target);
 		if (widget) {

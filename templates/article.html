@@ -49,10 +49,7 @@
 					articles("#articles", "../widgets/articles.html", "../sitemap.xml");
 					
 					// load qzone
-					qzone({
-						  categories: "../widgets/qzone-categories.html",
-						  articles: "../widgets/qzone-articles.html"
-					}).apply("#qzone");
+					qzone().templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
 					
 				} catch(e) {
 					//alert("article.html: " + e);
