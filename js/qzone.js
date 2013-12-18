@@ -9,47 +9,19 @@
 //
 function _Callback(data) {
 	if (data.code != 0) {
-		alert("[qzone.js] error:" + data.message);
+		//alert("[qzone.js] error:" + data.message);
 		return;
 	} else if (typeof(data.data) != "object") {
-		alert("[qzone.js] error: 111");
+		//alert("[qzone.js] error: 111");
 		return;
 	}
 	data = data.data;
 	if (typeof(data.cateInfo) == "object" && typeof(data.list) == "undefined") {
-		qzone_categories(data.cateInfo.categoryList);
+		qzone.template.categories(data.cateInfo.categoryList);
 	} else if (typeof(data.cateInfo) == "undefined") {
-		qzone_articles(data.list);
+		qzone.template.articles(data.list);
 	} else {
-		alert("[qzone.js] error: 222");
-	}
-}
-
-function qzone_categories(data) {
-	if (data == null || data.length == 0) return;
-	//
-	for (var i = 0; i < data.length; ++i) {
-		data[i].src = sharedQzoneManager.getArticleUrl(data[i].category, data[i].cateHex);
-	}
-	//
-	var template = sharedQzoneManager.categories;
-	var target = sharedQzoneManager.target;
-	var widget = new tarsier.Widget(target);
-	if (widget) {
-		widget.setData(data);
-		widget.queryTemplate({url: template});
-	}
-}
-
-function qzone_articles(data) {
-	if (data == null || data.length == 0) return;
-	//
-	var template = sharedQzoneManager.articles;
-	var target = "#" + data[0].cateHex;
-	var widget = new tarsier.Widget(target);
-	if (widget) {
-		widget.setData(data);
-		widget.queryTemplate({url: template});
+		//alert("[qzone.js] error: 222");
 	}
 }
 
@@ -68,7 +40,9 @@ function qzone(args) {
 	return sharedQzoneManager;
 }
 
+//
 // class qzone::Manager
+//
 qzone.Manager = function() {
 	// user info
 	this.uin = "1292823";
@@ -91,3 +65,37 @@ qzone.Manager.prototype.apply = function(target) {
 	this.target = target;
 	tarsier.importJS(this.getCatUrl());
 }
+
+//
+// namespace qzone::template
+//
+qzone.template = {
+	// show category
+	categories: function(data) {
+		if (data == null || data.length == 0) return;
+		//
+		var template = sharedQzoneManager.categories;
+		var target = sharedQzoneManager.target;
+		var widget = new tarsier.Widget(target);
+		if (widget) {
+			widget.setData(data);
+			widget.queryTemplate({url: template});
+		}
+		// query data
+		for (var i = 0; i < data.length; ++i) {
+			tarsier.importJS(sharedQzoneManager.getArticleUrl(data[i].category, data[i].cateHex));
+		}
+	},
+	
+	articles: function(data) {
+		if (data == null || data.length == 0) return;
+		//
+		var template = sharedQzoneManager.articles;
+		var target = "#" + data[0].cateHex;
+		var widget = new tarsier.Widget(target);
+		if (widget) {
+			widget.setData(data);
+			widget.queryTemplate({url: template});
+		}
+	}
+};
