@@ -18,9 +18,11 @@
 		-webkit-column-width: 240px;
 		-moz-column-width: 240px;
 		-o-colum-width: 240px;
+		column-width: 240px;
 		-webkit-column-gap: 1px;
 		-moz-column-gap: 1px;
 		-o-column-gap: 1px;
+		column-gap: 1px;
 	}
 	
 	#qzone .category {
