@@ -43,12 +43,20 @@
 		
 		<script language="javascript">
 			$(document).ready(function() {
-				articles("#articles", "../widgets/articles.html", "../sitemap.xml");
-				
-				qzone({
-					categories: "../widgets/qzone-categories.html",
-					articles: "../widgets/qzone-articles.html"
-				}).apply("#qzone");
+				try {
+					
+					// load articles
+					articles("#articles", "../widgets/articles.html", "../sitemap.xml");
+					
+					// load qzone
+					qzone({
+						  categories: "../widgets/qzone-categories.html",
+						  articles: "../widgets/qzone-articles.html"
+					}).apply("#qzone");
+					
+				} catch(e) {
+					//alert("article.html: " + e);
+				}
 			});
 		</script>
 	</body>

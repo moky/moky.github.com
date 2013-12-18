@@ -52,12 +52,7 @@ function main() {
 		
 		articles("#articles", "widgets/articles.html", "sitemap.xml");
 		
-		qzone({
-			  categories: "widgets/qzone-categories.html",
-			  articles: "widgets/qzone-articles.html"
-		}).apply("#qzone");
-		
 	} catch(e) {
-		alert("article.js: " + e);
+		//alert("[index.js] error: " + e);
 	}
 }
