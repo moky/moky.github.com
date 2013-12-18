@@ -1,6 +1,6 @@
 
 (function() {
-	
+
 	/**
 	 *  Environment variables
 	 */
@@ -20,12 +20,8 @@
 	/**
 	 *  Import javascript file
 	 */
-	function importJS(args) {
-		var src = args.src;
-		var callback = args.callback;
-		var doc = args.document || window.document;
-		
-		var script = doc.createElement("script");
+	function importJS(src, callback) {
+		var script = document.createElement("script");
 		if (script) {
 			script.type = "text/javascript";
 			script.src = src;
@@ -38,7 +34,7 @@
 					}
 				}
 			}
-			var head = doc.getElementsByTagName("head");
+			var head = document.getElementsByTagName("head");
 			if (head) {
 				head.item(0).appendChild(script);
 			}
@@ -46,7 +42,7 @@
 	}
 	
 	// import all dependences
-	importJS({src: __PATH__ + "common.js"});
+	importJS(__PATH__ + "common.js");
 	
 })();
 
@@ -54,23 +50,14 @@
 function main() {
 	try {
 		
-		var widget = new tarsier.Widget("#aside");
-		widget.show = function(target) {
-			if (!this.template || !this.data) return;
-			if (!target) {
-				if (!this.target) return;
-				target = this.target;
-			}
-			
-			$(target).html("");
-			
-			$.template(target, this.template);
-			$.tmpl(target, this.data.url).appendTo(target);
-		};
+		articles("#articles", "widgets/articles.html", "sitemap.xml");
 		
-		widget.query("widgets/aside.html", "sitemap.xml");
+		qzone({
+			  categories: "widgets/qzone-categories.html",
+			  articles: "widgets/qzone-articles.html"
+		}).apply("#qzone");
 		
 	} catch(e) {
-		//alert("article.js: " + e);
+		alert("article.js: " + e);
 	}
 }

@@ -5,7 +5,7 @@
  */
 
 (function() {
-	
+
 	/**
 	 *  Environment variables
 	 */
@@ -25,12 +25,8 @@
 	/**
 	 *  Import javascript file
 	 */
-	function importJS(args) {
-		var src = args.src;
-		var callback = args.callback;
-		var doc = args.document || window.document;
-		
-		var script = doc.createElement("script");
+	function importJS(src, callback) {
+		var script = document.createElement("script");
 		if (script) {
 			script.type = "text/javascript";
 			script.src = src;
@@ -43,7 +39,7 @@
 					}
 				}
 			}
-			var head = doc.getElementsByTagName("head");
+			var head = document.getElementsByTagName("head");
 			if (head) {
 				head.item(0).appendChild(script);
 			}
@@ -51,8 +47,10 @@
 	}
 	
 	// import all dependences
-	importJS({src: "http://moky.github.io/Tarsier/tarsier.js",
-			 callback: function() {
+	importJS(__PATH__ + "qzone.js");
+	
+	importJS("/~Moky/GitHub/Tarsier/tarsier.js", //"http://moky.github.io/Tarsier/tarsier.js",
+			 function() {
 				/**
 				 *
 				 *    Main entrance
@@ -62,6 +60,19 @@
 					tarsier.ready(main);
 				}
 			 }
-	});
+	);
 	
 })();
+
+// articles widget
+function articles(target, template, dataSource) {
+	var widget = new tarsier.Widget(target);
+	widget.show = function() {
+		if (this.template == null || this.data == null || this.target == null) return;
+		$(this.target).html("");
+		var name = this.target;
+		$.template(name, this.template);
+		$.tmpl(name, this.data.url).appendTo(this.target);
+	};
+	widget.query(template, dataSource);
+}

@@ -16,42 +16,22 @@
 			
 			<div id="main">
 				
-				
 				<article><h1 id="title">${#title}</h1>
 					<p id="body">${#body}</p>
 					<div id="author">${#author}</div>
 				</article>
 				
-				
 				<aside>
 					<h3>文章列表</h3>
-					<ul id="aside"></ul>
-					
-					<script language="javascript">
-						$(document).ready(function() {
-							var src="../widgets/aside.html";
-							var template = src;
-							
-							var widget = new tarsier.Widget("#aside");
-							widget.show = function(target) {
-								if (!this.template || !this.data) return;
-								if (!target) {
-									if (!this.target) return;
-									target = this.target;
-								}
-								
-								$(target).html("");
-								
-								$.template(target, this.template);
-								$.tmpl(target, this.data.url).appendTo(target);
-							};
-							widget.query(template, src="../sitemap.xml");
-						});
-					</script>
+					<ul id="articles"></ul>
 				</aside>
 				
-				
 				<div class="clear">&nbsp;</div>
+				
+			</div>
+			
+			<div id="qzone_wrap">
+				<div id="qzone"></div>
 			</div>
 			
 			<footer>
@@ -61,5 +41,15 @@
 			</footer>
 		</div>
 		
+		<script language="javascript">
+			$(document).ready(function() {
+				articles("#articles", "../widgets/articles.html", "../sitemap.xml");
+				
+				qzone({
+					categories: "../widgets/qzone-categories.html",
+					articles: "../widgets/qzone-articles.html"
+				}).apply("#qzone");
+			});
+		</script>
 	</body>
 </html>

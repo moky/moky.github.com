@@ -1,6 +1,6 @@
 
 (function() {
-	
+
 	/**
 	 *  Environment variables
 	 */
@@ -20,12 +20,8 @@
 	/**
 	 *  Import javascript file
 	 */
-	function importJS(args) {
-		var src = args.src;
-		var callback = args.callback;
-		var doc = args.document || window.document;
-		
-		var script = doc.createElement("script");
+	function importJS(src, callback) {
+		var script = document.createElement("script");
 		if (script) {
 			script.type = "text/javascript";
 			script.src = src;
@@ -38,7 +34,7 @@
 					}
 				}
 			}
-			var head = doc.getElementsByTagName("head");
+			var head = document.getElementsByTagName("head");
 			if (head) {
 				head.item(0).appendChild(script);
 			}
@@ -46,7 +42,7 @@
 	}
 	
 	// import all dependences
-	importJS({src: __PATH__ + "common.js"});
+	importJS(__PATH__ + "common.js");
 	
 })();
 
