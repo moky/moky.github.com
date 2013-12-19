@@ -15,7 +15,10 @@ code.highlight = function() {
 		try {
 			var thiz = $(this);
 			var language = thiz.attr("language") || "javascript";
-			var pre = $("<pre>" + thiz.html() + "</pre>");
+			var html = thiz.html();
+			html = html.replace(/\</g, "&lt;");
+			html = html.replace(/\>/g, "&gt;");
+			var pre = $("<pre>" + html + "</pre>");
 			thiz.html("");
 			pre.appendTo(thiz);
 			pre.snippet(language, { style: "emacs", showNum: true });
