@@ -14,11 +14,15 @@
 	
 	var scripts = document.getElementsByTagName("script");
 	if (scripts && scripts.length > 0) {
-		__FILE__ = scripts[scripts.length - 1].src;
-		var pos = __FILE__.lastIndexOf("/");
-		if (pos >= 0) {
-			__PATH__ = __FILE__.substr(0, pos + 1);
-			__FILE__ = __FILE__.substr(pos + 1);
+		for (var i = scripts.length - 1; i >= 0; --i) {
+			if (scripts[i].src.lastIndexOf("common.js") > 0) {
+				__FILE__ = scripts[i].src;
+				var pos = __FILE__.lastIndexOf("/");
+				if (pos >= 0) {
+					__PATH__ = __FILE__.substring(0, pos + 1);
+					__FILE__ = __FILE__.substring(pos + 1);
+				}
+			}
 		}
 	}
 	

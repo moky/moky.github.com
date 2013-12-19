@@ -4,16 +4,20 @@
  *      Moky @ Dec. 19, 2013
  */
 
+if (typeof(code) == "undefined") {
+	code = {
+	};
+}
 
-function highlight_codes() {
+code.highlight = function() {
 	
 	function one() {
 		var thiz = $(this);
-		var lang = thiz.attr("language");
+		var language = thiz.attr("language") || "javascript";
 		var pre = $("<pre>" + thiz.html() + "</pre>");
 		thiz.html("");
 		pre.appendTo(thiz);
-		pre.snippet(lang || "javascript", { style: "emacs", showNum: true });
+		pre.snippet(language, { style: "emacs", showNum: true });
 	}
 	
 	try {
@@ -21,9 +25,9 @@ function highlight_codes() {
 	} catch(e) {
 		//alert("[code.js] error: " + e);
 	}
-}
+};
 
-tarsier.ready(highlight_codes);
+tarsier.ready(code.highlight);
 
 //tarsier.importCSS("http://steamdev.com/snippet/css/jquery.snippet.min.css");
 //tarsier.importJS("http://steamdev.com/snippet/js/jquery.snippet.min.js");
