@@ -12,19 +12,19 @@ if (typeof(code) == "undefined") {
 code.highlight = function() {
 	
 	function one() {
-		var thiz = $(this);
-		var language = thiz.attr("language") || "javascript";
-		var pre = $("<pre>" + thiz.html() + "</pre>");
-		thiz.html("");
-		pre.appendTo(thiz);
-		pre.snippet(language, { style: "emacs", showNum: true });
+		try {
+			var thiz = $(this);
+			var language = thiz.attr("language") || "javascript";
+			var pre = $("<pre>" + thiz.html() + "</pre>");
+			thiz.html("");
+			pre.appendTo(thiz);
+			pre.snippet(language, { style: "emacs", showNum: true });
+		} catch(e) {
+			//alert("[code.js] error: " + e);
+		}
 	}
 	
-	try {
-		$("code").each(one);
-	} catch(e) {
-		//alert("[code.js] error: " + e);
-	}
+	$("code").each(one);
 };
 
 tarsier.ready(code.highlight);
