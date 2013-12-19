@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset>
 	<url>
+		<title>魔方阵 - C 语言</title>
+		<loc>http://moky.github.io/a/magic-matrix.html</loc>
+		<lastmod>2013-12-19</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
 		<title>宇宙的刻度</title>
 		<loc>http://moky.github.io/a/the-scale-of-the-universe.html</loc>
 		<lastmod>2013-12-16</lastmod>
