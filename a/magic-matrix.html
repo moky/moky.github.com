@@ -24,13 +24,13 @@
 			一时间脑子里无数种语言的实现奔腾而过，
 			为了更好玩一些，我决定用 C 语言来写。
 			初步的想法：
-			1、能用一行指令“gcc -o magic *.c”编译
-			2、不依赖任何第三方的库或函数
-			3、面向对象
+			1、能用简单指令“gcc -o magic *.c”编译
+			2、不依赖任何第三方的函数库
+			3、面向对象设计
 			
-			下面是源代码：
+			-------- 下面是源代码 --------
 			
-			第一对文件：矩阵(matrix.h/c)
+			模块1：矩阵 (matrix.h/c)
 <code language="cpp">
 //
 //  matrix.h
@@ -98,9 +98,9 @@ void MatrixShow(const Matrix * const matrix)
 	fflush(stdout);
 }
 </code>
-			这个模块实现了一个 N*N 矩阵的创建、删除以及显示功能，太简单，不解析。
+			这个模块实现了一个 N*N 矩阵的创建、删除以及显示功能。太简单了，不解析。
 			
-			第二对文件：排列(perm.h/c)
+			模块2：矩阵排列 (perm.h/c)
 <code language="cpp">
 //
 //  perm.h
@@ -235,7 +235,7 @@ void PMatrixInit(PMatrix * const pmat, PermutateCallback func)
 			顺便说一句，permutate1_ 采用了递归算法，这个比较好理解，
 			但是递归比较好资源，于是我又写了一个 permutate2_，采用迭代的方式来穷举。
 			
-			第三对文件：主程序(magic.h/c)
+			模块3：主程序 (magic.h/c)
 <code language="cpp">
 //
 //  magic.h
