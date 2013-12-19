@@ -5,6 +5,7 @@
 		<title>文章模板</title>
 		
 		<link rel="stylesheet" type="text/css" href="../css/article.css" />
+		<script type="text/javascript" src="../js/code.js"></script>
 	</head>
 	
 	<body>
@@ -41,20 +42,5 @@
 			</footer>
 		</div>
 		
-		<script language="javascript">
-			$(document).ready(function() {
-				try {
-					
-					// load articles
-					articles("#articles", "../widgets/articles.html", "../sitemap.xml");
-					
-					// load qzone
-					qzone().templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
-					
-				} catch(e) {
-					//alert("article.html: " + e);
-				}
-			});
-		</script>
 	</body>
 </html>

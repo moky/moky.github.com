@@ -56,14 +56,6 @@ td {
 	article embed {
 		width: 640px;
 		height: 480px;
-		margin: 20px;
-		padding: 5px;
-		border: 1px solid #ebebeb;
-		box-shadow: 0 0 20px #ebebeb;
-		-webkit-box-shadow: 0 0 20px #ebebeb;
-		-moz-box-shadow: 0 0 20px #ebebeb;
-		-o-box-shadow: 0 0 20px #ebebeb;
-		-ms-box-shadow: 0 0 20px #ebebeb;
 	}
 	
 	aside {

@@ -46,20 +46,40 @@
 	
 })();
 
+function template_main() {
+	try {
+		
+		// load articles
+		articles("#articles", "../widgets/articles.html", "../sitemap.xml");
+		
+		// load qzone
+		qzone().templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
+		
+	} catch(e) {
+		//alert("article.js: " + e);
+	}
+}
+
+function load_template(url) {
+	
+	tarsier.http.ajax({
+					  url: url,
+					  dataType: "html",
+					  //cache: false,
+					  success: function(data) {
+						var template = new tarsier.Template(data, this.url);
+						template.apply(document);
+						tarsier.ready(template_main);
+					  },
+					  error: function() { alert("Error loading template: " + url); }
+	});
+}
+
 //------ main
 function main() {
 	try {
 		
-		var template_path = "../templates/";
-		var template_file = "article.html";
-		
-		tarsier.http.ajax({
-						  url: template_path + template_file,
-						  dataType: "html",
-						  //cache: false,
-						  success: function(data) { (new tarsier.Template(data, this.url)).apply(document); },
-						  error: function() { alert("Error loading template: " + template_file); }
-		});
+		load_template("../templates/article.html");
 		
 	} catch(e) {
 		//alert("article.js: " + e);
