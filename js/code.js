@@ -25,7 +25,10 @@ function highlight_codes() {
 
 tarsier.ready(highlight_codes);
 
-tarsier.importCSS("http://steamdev.com/snippet/css/jquery.snippet.min.css");
-tarsier.importJS("http://steamdev.com/snippet/js/jquery.snippet.min.js");
+//tarsier.importCSS("http://steamdev.com/snippet/css/jquery.snippet.min.css");
+//tarsier.importJS("http://steamdev.com/snippet/js/jquery.snippet.min.js");
+
+tarsier.importCSS("http://moky.github.io/Tarsier/3rd/jquery.snippet.min.css");
+tarsier.importJS("http://moky.github.io/Tarsier/3rd/jquery.snippet.min.js");
 
 
