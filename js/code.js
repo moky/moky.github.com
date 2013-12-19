@@ -21,7 +21,7 @@ code.highlight = function() {
 			var pre = $("<pre>" + html + "</pre>");
 			thiz.html("");
 			pre.appendTo(thiz);
-			pre.snippet(language, { style: "emacs", showNum: true });
+			pre.snippet(language, { style: "dull", showNum: true });
 		} catch(e) {
 			//alert("[code.js] error: " + e);
 		}
