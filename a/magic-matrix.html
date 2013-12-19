@@ -335,13 +335,16 @@ void usage(const char * cmd)
 
 int main(int argc, char * argv[])
 {
+	int N;
+	PMatrix * pmat
+	
 	if (argc != 2)
 	{
 		usage(argv[0]);
 		return 0;
 	}
 	
-	int N = atoi(argv[1]);
+	N = atoi(argv[1]);
 	if (N < 1)
 	{
 		usage(argv[0]);
@@ -349,7 +352,7 @@ int main(int argc, char * argv[])
 	}
 	
 	// create a matrix
-	PMatrix * pmat = PMatrixCreate(N);
+	pmat = PMatrixCreate(N);
 	PMatrixInit(pmat, magic_check);
 	
 	// show it
