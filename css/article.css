@@ -3,6 +3,8 @@
 
 header {
 	padding: 20px 0;
+	font-size: 24px;
+	font-weight: 700;
 }
 
 article #title {
@@ -59,10 +61,10 @@ td {
 	}
 	
 	aside {
-		padding: 5px 8px;
+		padding: 5px 15px;
 		float: right;
-		width: 240px;
-		border: 1px solid #333333;
+		width: 220px;
+		border: 1px solid #555555;
 	}
 	
 }

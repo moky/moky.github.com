@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
 	text-decoration: none;
 	color: #007edf;
-	text-shadow: none;
+	text-shadow: 0 0 5px rgba(104, 182, 255, 0.5);
 	
 	transition: color 0.5s ease;
 	transition: text-shadow 0.5s ease;
@@ -114,9 +114,9 @@ code ol {
 }
 
 footer {
-	margin: 20px 0px 0px 0px;
-	border-top: 1px dashed #aaaaaa;
-	padding: 5px;
+	margin: 10px 0px 0px 0px;
+	border-top: 1px solid #555555;
+	padding: 5px 20px 15px 20px;
 	color: #aaaaaa;
 }
 
