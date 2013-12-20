@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>垃圾代码</title>
+		<meta name="keywords" content="程序,代码" />
+		<meta name="description" content="" />
+		
+		<meta name="viewport" content="width=device-width" />
+		<!--[if lt IE 9]>
+			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="../js/article.js"></script>
+	</head>
+	
+	<body>
+		
+		<header id="title">垃圾代码</header>
+		
+		<article id="body">
+			史上最糟糕的代码是什么？
+			举个栗子：
+			<code id="code" language="javascript">
+alert(++[++[++[++[++[[]][+[]]][+[]]][+[]]][+[]]][+[]]+[]
+	+[++[++[[]][+[]]][+[]]][+[]]
+	+[+[]]
+	+[++[[]][+[]]]
+	+[++[++[++[[]][+[]]][+[]]][+[]]][+[]]
+	+[++[[]][+[]]]
+	+[++[++[++[++[[]][+[]]][+[]]][+[]]][+[]]][+[]]);</code>
+			<textarea id="textarea" style="width: 90%; height: 120px; margin: 0px 2em; border: 1px solid #777777; padding: 10px 12px; color: #e0e0f5; background-color: #151515; "
+				onkeyup="document.getElementById('code').innerHTML = document.getElementById('textarea').value; code.highlight();"
+				onblur="try { eval(document.getElementById('textarea').value); } catch(e) { alert(e); }">
+alert(++[++[++[++[++[[]][+[]]][+[]]][+[]]][+[]]][+[]]+[]
+	+[++[++[[]][+[]]][+[]]][+[]]
+	+[+[]]
+	+[++[[]][+[]]]
+	+[++[++[++[[]][+[]]][+[]]][+[]]][+[]]
+	+[++[[]][+[]]]
+	+[++[++[++[++[[]][+[]]][+[]]][+[]]][+[]]][+[]]);</textarea>
+			注：
+			1、您可以尝试修改文本区的 Javascript 代码
+			2、光标离开文本区时其中代码即自动运行
+			
+			
+			相信任何一个人要是在实际开发中看到这种代码估计都得骂娘吧～木哈哈！
+			
+			如果您有幸遇到比这更糟糕的代码，请<a href="http://t.qq.com/mokymo/" target="qq">让我知道</a>，谢谢。 ^_^
+			
+		</article>
+		
+		<footer id="author">moKy @ Dec. 20, 2013</footer>
+		
+	</body>
+</html>

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset>
 	<url>
-		<title>魔方阵 - C语言</title>
+		<title>垃圾代码</title>
+		<loc>http://moky.github.io/a/worst-codes.html</loc>
+		<lastmod>2013-12-20</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<title>魔方阵—C语言</title>
 		<loc>http://moky.github.io/a/magic-matrix.html</loc>
 		<lastmod>2013-12-19</lastmod>
 		<changefreq>daily</changefreq>
