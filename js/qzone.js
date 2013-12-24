@@ -9,7 +9,7 @@
 //
 function _Callback(data) {
 	if (data.code != 0) {
-		//alert("[qzone.js] error:" + data.message);
+		qzone.template.error(data);
 		return;
 	} else if (typeof(data.data) != "object") {
 		//alert("[qzone.js] error: 111");
@@ -78,7 +78,8 @@ qzone.Manager.prototype.apply = function(target) {
 // namespace qzone::template
 //
 qzone.template = {
-	// show category
+	
+	// show categories
 	categories: function(data) {
 		if (data == null || data.length == 0) return;
 		var qz = qzone();
@@ -96,6 +97,7 @@ qzone.template = {
 		}
 	},
 	
+	// show articles
 	articles: function(data) {
 		if (data == null || data.length == 0) return;
 		var qz = qzone();
@@ -112,5 +114,12 @@ qzone.template = {
 			widget.setData(data);
 			widget.queryTemplate({url: template});
 		}
+	},
+	
+	// show error
+	error: function(data) {
+		if (data == null) return;
+		var qz = qzone();
+		$(qz.target).html("<span style=\"color: red; \">[qzone] error code: " + data.code + ", message: " + data.message + "</span>");
 	}
 };

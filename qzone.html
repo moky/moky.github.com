@@ -18,7 +18,7 @@
 					url = tarsier.http.parseURI(url);
 					
 					var uin = url.params.uin || "1292823";
-					var domain = uin == "1292823" ? "moky.qzone.qq.com" : uin + ".qzone.qq.com";
+					var domain = qzone.domains[uin] || uin + ".qzone.qq.com";
 					
 					$("#title").html('<a href="http://' + domain + '/" target="qzone">' + domain + '</a>');
 					
@@ -31,6 +31,7 @@
 			}
 		</script>
 		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/qzone.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<link rel="stylesheet" type="text/css" href="css/qzone.css" />
