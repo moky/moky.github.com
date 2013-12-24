@@ -50,40 +50,28 @@
 	
 })();
 
-function template_main() {
-	try {
-		
-		// load articles
-		articles("#articles", "../widgets/articles.html", "../sitemap.xml");
-		
-		// load qzone
-		qzone().templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
-		
-	} catch(e) {
-		//alert("article.js: " + e);
-	}
-}
-
-function load_template(url) {
-	
-	tarsier.http.ajax({
-					  url: url,
-					  dataType: "html",
-					  //cache: false,
-					  success: function(data) {
-						var template = new tarsier.Template(data, this.url);
-						template.apply(document);
-						tarsier.ready(template_main);
-					  },
-					  error: function() { alert("Error loading template: " + url); }
-	});
-}
-
 //------ main
 function main() {
 	try {
 		
-		load_template("../templates/article.html");
+		// load template
+		tarsier.http.ajax({
+						  url: "../templates/article.html",
+						  dataType: "html",
+						  //cache: false,
+						  success: function(data) {
+							// apply template
+							var template = new tarsier.Template(data, this.url);
+							template.apply(document);
+							// load articles
+							articles("#articles", "../widgets/articles.html", "../sitemap.xml");
+							// load qzone
+							qzone().templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
+						  },
+						  error: function() {
+							alert("Error loading template: " + url);
+						  }
+		});
 		
 	} catch(e) {
 		//alert("article.js: " + e);

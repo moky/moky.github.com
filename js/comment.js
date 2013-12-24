@@ -8,9 +8,9 @@ var duoshuoQuery = {
 	short_name: "moky"
 };
 
-(function() {
+function load_comments(target) {
 	
-	var div = document.getElementById("comments");
+	var div = document.getElementById(target);
 	if (div) {
 		div.className = "ds-thread";
 		tarsier.base.import({src: "http://static.duoshuo.com/embed.js",
@@ -20,4 +20,8 @@ var duoshuoQuery = {
 							});
 	}
 	
-})();
+}
+
+tarsier.ready(function() {
+	load_comments("comments");
+});
