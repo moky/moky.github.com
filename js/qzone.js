@@ -37,6 +37,10 @@ function qzone(uin) {
 	return _sharedQzoneManager;
 }
 
+qzone.domains = {
+	"1292823": "moky.qzone.qq.com"
+};
+
 //
 // class qzone::Manager
 //
@@ -96,7 +100,7 @@ qzone.template = {
 		if (data == null || data.length == 0) return;
 		var qz = qzone();
 		// blog url
-		var url = qz.uin == "1292823" ? "http://moky.qzone.qq.com/blog/" : "http://user.qzone.qq.com/" + qz.uin + "/blog/";
+		var url = "http://" + (qzone.domains[qz.uin] || "user.qzone.qq.com/" + qz.uin) + "/blog/";
 		for (var i = 0; i < data.length; ++i) {
 			data[i].url = url + data[i].blogId;
 		}
