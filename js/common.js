@@ -51,8 +51,6 @@
 	}
 	
 	// import all dependences
-	importJS(__PATH__ + "qzone.js");
-	
 	importJS("http://moky.github.io/Tarsier/tarsier.js",
 			 function() {
 				/**
@@ -67,16 +65,3 @@
 	);
 	
 })();
-
-// articles widget
-function articles(target, template, dataSource) {
-	var widget = new tarsier.Widget(target);
-	widget.show = function() {
-		if (this.template == null || this.data == null || this.target == null) return;
-		$(this.target).html("");
-		var name = this.target;
-		$.template(name, this.template);
-		$.tmpl(name, this.data.url).appendTo(this.target);
-	};
-	widget.query(template, dataSource);
-}

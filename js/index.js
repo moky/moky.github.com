@@ -47,6 +47,7 @@
 	
 	// import all dependences
 	importJS(__PATH__ + "common.js");
+	importJS(__PATH__ + "widget.js");
 	
 })();
 
@@ -54,7 +55,7 @@
 function main() {
 	try {
 		
-		articles("#articles", "widgets/articles.html", "sitemap.xml");
+		widget.articles("#articles", "widgets/articles.html", "sitemap.xml");
 		
 	} catch(e) {
 		//alert("[index.js] error: " + e);
