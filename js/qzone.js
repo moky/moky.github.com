@@ -125,8 +125,7 @@ qzone.template = {
 };
 
 tarsier.ready(function() {
-	var base = "../widgets/";
-	var cat = base + "qzone-categories.html";
-	var art = base + "qzone-articles.html";
+	var cat = js_base + "../widgets/qzone-categories.html";
+	var art = js_base + "../widgets/qzone-articles.html";
 	qzone().templates(cat, art).apply("#qzone");
 });

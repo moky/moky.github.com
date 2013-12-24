@@ -4,6 +4,8 @@
  *      Moky @ Dec. 10, 2013
  */
 
+var js_base = "";
+
 (function() {
 
 	/**
@@ -25,6 +27,8 @@
 			}
 		}
 	}
+	
+	js_base = __PATH__;
 	
 	/**
 	 *  Import javascript file
