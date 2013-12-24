@@ -52,6 +52,13 @@
 	
 })();
 
+function load_qzone() {
+	
+	qzone().templates(js_base + "../widgets/qzone-categories.html",
+					  js_base + "../widgets/qzone-articles.html").apply("#qzone");
+	
+}
+
 function apply_template(data, url) {
 	
 	// apply template
@@ -59,13 +66,12 @@ function apply_template(data, url) {
 	template.apply(document);
 	
 	// load articles widget
-	widget.articles("#articles", js_base + "../widgets/articles.html", js_base + "../sitemap.xml");
+	widget.articles("#articles",
+					js_base + "../widgets/articles.html",
+					js_base + "../sitemap.xml");
 	
 	// load qzone
-	tarsier.ready(function() {
-		qzone().templates(js_base + "../widgets/qzone-categories.html", js_base + "../widgets/qzone-articles.html")
-			.apply("#qzone");
-	});
+	setTimeout(load_qzone, 3000); // delay 3 seconds
 }
 
 //------ main
