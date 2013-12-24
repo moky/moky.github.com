@@ -51,6 +51,9 @@ qzone.Manager = function() {
 	// templages
 	this.categories = null;
 	this.articles = null;
+	
+	// queries
+	this.queries = [];
 	return this;
 };
 
@@ -68,15 +71,34 @@ qzone.Manager.prototype.templates = function(categories, articles) {
 	return this;
 };
 
+qzone.Manager.prototype.add = function(url) {
+	this.queries.push(url);
+};
+
+qzone.Manager.prototype.run = function() {
+	var url = this.queries.shift();
+	if (!url) return;
+		
+	tarsier.base.import({
+						src: url,
+						type: "text/javascript",
+						async: true,
+						callback: function() {
+							setTimeout(qzone.delay, 1000); // query next url
+						}
+	});
+};
+
 qzone.Manager.prototype.apply = function(target) {
 	if (target) this.target = target;
-	tarsier.base.import({
-						src: this.getCatUrl(),
-						type: "text/javascript",
-						async: true
-	});
+	this.add(this.getCatUrl());
+	setTimeout(qzone.delay, 1000); // query first url
 	return this;
 };
+
+qzone.delay = function() {
+	qzone().run();
+}
 
 //
 // namespace qzone::template
@@ -97,12 +119,9 @@ qzone.template = {
 		}
 		// query articles with categories
 		for (var i = 0; i < data.length; ++i) {
-			tarsier.base.import({
-								src: qz.getArticlesUrl(data[i].category, data[i].cateHex),
-								type: "text/javascript",
-								async: true
-			});
+			qz.add(qz.getArticlesUrl(data[i].category, data[i].cateHex));
 		}
+		setTimeout(qzone.delay, 1000);
 	},
 	
 	// show articles
