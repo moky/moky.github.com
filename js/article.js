@@ -48,6 +48,7 @@
 	// import all dependences
 	importJS(__PATH__ + "common.js");
 	importJS(__PATH__ + "widget.js");
+	importJS(__PATH__ + "qzone.js");
 	
 })();
 
@@ -58,7 +59,13 @@ function apply_template(data, url) {
 	template.apply(document);
 	
 	// load articles widget
-	widget.articles("#articles", "../widgets/articles.html", "../sitemap.xml");
+	widget.articles("#articles", js_base + "../widgets/articles.html", js_base + "../sitemap.xml");
+	
+	// load qzone
+	tarsier.ready(function() {
+		qzone().templates(js_base + "../widgets/qzone-categories.html", js_base + "../widgets/qzone-articles.html")
+			.apply("#qzone");
+	});
 }
 
 //------ main

@@ -123,9 +123,3 @@ qzone.template = {
 		$(qz.target).html("<span style=\"color: red; \">[qzone] error code: " + data.code + ", message: " + data.message + "</span>");
 	}
 };
-
-tarsier.ready(function() {
-	var cat = js_base + "../widgets/qzone-categories.html";
-	var art = js_base + "../widgets/qzone-articles.html";
-	qzone().templates(cat, art).apply("#qzone");
-});
