@@ -70,7 +70,11 @@ qzone.Manager.prototype.templates = function(categories, articles) {
 
 qzone.Manager.prototype.apply = function(target) {
 	if (target) this.target = target;
-	tarsier.importJS(this.getCatUrl());
+	tarsier.base.import({
+						src: this.getCatUrl(),
+						type: "text/javascript",
+						async: true
+	});
 	return this;
 };
 
@@ -93,7 +97,11 @@ qzone.template = {
 		}
 		// query articles with categories
 		for (var i = 0; i < data.length; ++i) {
-			tarsier.importJS(qz.getArticlesUrl(data[i].category, data[i].cateHex));
+			tarsier.base.import({
+								src: qz.getArticlesUrl(data[i].category, data[i].cateHex),
+								type: "text/javascript",
+								async: true
+			});
 		}
 	},
 	
