@@ -131,3 +131,8 @@ footer a {
 .ds-powered-by, .ds-dialog-footer {
 	display: none;
 }
+
+.hints {
+	color: gray;
+	text-align: center;
+}
