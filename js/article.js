@@ -49,6 +49,7 @@
 	importJS(__PATH__ + "common.js");
 	importJS(__PATH__ + "widget.js");
 	importJS(__PATH__ + "qzone.js");
+	importJS(__PATH__ + "stat.js");
 	
 })();
 
