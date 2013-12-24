@@ -123,3 +123,10 @@ qzone.template = {
 		$(qz.target).html("<span style=\"color: red; \">[qzone] error code: " + data.code + ", message: " + data.message + "</span>");
 	}
 };
+
+tarsier.ready(function() {
+	var base = "../widgets/";
+	var cat = base + "qzone-categories.html";
+	var art = base + "qzone-articles.html";
+	qzone().templates(cat, art).apply("#qzone");
+});

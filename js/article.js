@@ -48,7 +48,6 @@
 	// import all dependences
 	importJS(__PATH__ + "common.js");
 	importJS(__PATH__ + "widget.js");
-	//importJS(__PATH__ + "qzone.js");
 	
 })();
 
@@ -60,15 +59,6 @@ function apply_template(data, url) {
 	
 	// load articles widget
 	widget.articles("#articles", "../widgets/articles.html", "../sitemap.xml");
-	
-	// load qzone
-	tarsier.base.import({src: "../js/qzone.js",
-						type: "text/javascript",
-						async: true,
-						callback: function() {
-							qzone().templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
-						}
-	});
 }
 
 //------ main
