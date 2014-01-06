@@ -23,6 +23,23 @@ article #title {
 	-webkit-font-smoothing: antialiased;
 }
 
+blockquote {
+	color: #ffffff;
+	background-color: #333333;
+	font-style: italic;
+	
+	max-width: 100%;
+	margin: 10px 20px;
+	padding: 5px;
+	border: 1px solid #999999;
+	
+	box-shadow: 0 0 20px #777777;
+	-webkit-box-shadow: 0 0 20px #777777;
+	-moz-box-shadow: 0 0 20px #777777;
+	-o-box-shadow: 0 0 20px #777777;
+	-ms-box-shadow: 0 0 20px #777777;
+}
+
 #main {
 }
 
