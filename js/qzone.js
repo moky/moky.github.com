@@ -47,7 +47,7 @@ qzone.domains = {
 qzone.Manager = function() {
 	// user info
 	this.uin = "1292823";
-	this.url = "http://b1.qzone.qq.com/cgi-bin/blognew/get_abs";
+	this.url = "http://b1.cnc.qzone.qq.com/cgi-bin/blognew/get_abs?statYear=" + (new Date()).getFullYear();
 	// templages
 	this.categories = null;
 	this.articles = null;
@@ -58,11 +58,11 @@ qzone.Manager = function() {
 };
 
 qzone.Manager.prototype.getCatUrl = function() {
-	return this.url + "?blogType=0&reqInfo=18&hostUin=" + this.uin;
+	return this.url + "&blogType=0&reqInfo=18&hostUin=" + this.uin;
 };
 
 qzone.Manager.prototype.getArticlesUrl = function(cat, hex) {
-	return this.url + "?blogType=0&reqInfo=1&hostUin=" + this.uin + "&num=100&cateName=" + cat + "&cateHex=" + hex;
+	return this.url + "&blogType=0&reqInfo=1&hostUin=" + this.uin + "&num=100&cateName=" + cat + "&cateHex=" + hex;
 };
 
 qzone.Manager.prototype.templates = function(categories, articles) {
