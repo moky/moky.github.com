@@ -48,7 +48,6 @@
 	// import all dependences
 	importJS(__PATH__ + "common.js");
 	importJS(__PATH__ + "widget.js");
-	importJS(__PATH__ + "stat.js");
 	
 })();
 
