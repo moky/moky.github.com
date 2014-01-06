@@ -24,6 +24,7 @@ article #title {
 }
 
 blockquote {
+	display: block;
 	color: #ffffff;
 	background-color: #333333;
 	font-style: italic;
