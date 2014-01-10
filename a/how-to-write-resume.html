@@ -68,7 +68,79 @@
 			
 			希望大家都能找到一份更加适合自己的工作！
 			
+			
+			
+			
+			当然了，如果你自信足够酷帅拽狂屌炸天，那也就不必按照套路出牌了，
+			譬如我的简历就有可能像下面这样，只有两张黑白图：
+			<blockquote id="qrcode"><span class="hints">Drawing QR codes...</span></blockquote>
+			【 友情提示：可千万别学我哦～ :p 】
+			
 		</article>
+		
+		<script type="text/javascript">
+			//
+			// added by moKy @ Jan. 10, 2014
+			//
+			
+			// vcard
+			function show_vcard() {
+				var text = "BEGIN:VCARD\r\n"
+				+ "VERSION:2.1\r\n"
+				
+				+ "FN:Moky\r\n"
+				+ "N:Qi;Mo\r\n"
+				+ "NICKNAME:moKy\r\n"
+				+ "PHOTO;VALUE=uri:http://url.cn/NgQ9vz\r\n"
+				+ "TEL:0x04 54B5 6E9B\r\n"
+				
+				+ "ORG:Slanissue Inc.\r\n"
+				+ "TITLE:CTO\r\n"
+				+ "URL:http://moky.github.com/\r\n"
+				+ "ADR;WORK:Beijing, China.\r\n"
+				
+				+ "NOTE:Call me if you can.\r\n"
+				+ "END:VCARD"
+				;
+				
+				qrcode({target: "#qrcode", text: text});
+			}
+			
+			// blah blah
+			function show_resume() {
+				var text = "My name is Moky. "
+				+ "I became a programmer in 17 years ago, "
+				+ "now I can write programs in C/C++, Perl, PHP, Javascript, Java, Objective-C, etc... "
+				+ "but there are still new things springing out day after day, "
+				+ "so I'm still on the way..."
+				;
+				
+				qrcode({target: "#qrcode", text: text});
+			}
+			
+			function show_qrcodes() {
+				// init
+				$("#qrcode")
+				.html("")
+				.css("display", "inline-block")
+				.css("background-color", "white");
+				
+				show_resume();
+				show_vcard();
+			}
+			
+			// main
+			var _main = main;
+			main = function() {
+				if (typeof(_main) == "function") {
+					_main();
+				}
+				
+				tarsier.importJS("../js/qrcode.js", function() {
+								 tarsier.ready(show_qrcodes);
+				});
+			};
+		</script>
 		
 		<footer id="author">moKy @ Dec. 12, 2013</footer>
 		
