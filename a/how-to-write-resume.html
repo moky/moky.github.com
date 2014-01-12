@@ -89,17 +89,17 @@
 				+ "VERSION:2.1\r\n"
 				
 				+ "FN:Moky\r\n"
-				+ "N:Qi;Mo\r\n"
+				+ "N:莫;奇\r\n"
 				+ "NICKNAME:moKy\r\n"
 				+ "PHOTO;VALUE=uri:http://url.cn/NgQ9vz\r\n"
 				+ "TEL:0x04 54B5 6E9B\r\n"
 				
-				+ "ORG:Slanissue Inc.\r\n"
+				+ "ORG:贝瓦网(www.beva.com)\r\n"
 				+ "TITLE:CTO\r\n"
 				+ "URL:http://moky.github.com/\r\n"
-				+ "ADR;WORK:Beijing, China.\r\n"
+				+ "ADR;WORK:;;;;Beijing;;China\r\n"
 				
-				+ "NOTE:Call me if you can.\r\n"
+				+ "NOTE:Call me if you can :p\r\n"
 				+ "END:VCARD"
 				;
 				
@@ -108,11 +108,11 @@
 			
 			// blah blah
 			function show_resume() {
-				var text = "My name is Moky. "
-				+ "I became a programmer in " + ((new Date()).getFullYear() - 1997) + " years ago, "
-				+ "now I can write programs in C/C++, PHP, Javascript, Java, Objective-C, etc. "
-				+ "but there are new things springing out day after day, "
-				+ "so I'm still on the way..."
+				var text = "My name is Moky(莫奇).\r\n"
+				+ "I became a programmer " + ((new Date()).getFullYear() - 1997) + " years ago,\r\n"
+				+ "I worked for Tencent company since 2004, after graduated from SCUT.\r\n"
+				+ "I can write programs in mainstream languages, "
+				+ "such as C/C++, PHP, Javascript, Java(Android), Objective-C, etc..."
 				;
 				
 				qrcode({target: "#qrcode", text: text});
