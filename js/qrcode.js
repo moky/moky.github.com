@@ -29,7 +29,7 @@ function qrcode(options) {
 	if (typeof(options) === "string") {
 		options	= { text: options, target: "#qrcode" };
 	}
-	// support UTF-8
+	
 	options.text = utf16to8(options.text);
 	
 	$(options.target).qrcode(options);
