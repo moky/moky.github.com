@@ -10,9 +10,7 @@
 		<!--[if lt IE 9]>
 			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<![endif]-->
-		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/share.js"></script>
-		<script type="text/javascript" src="js/stat.js"></script>
+		
 		<script type="text/javascript">
 			function main() {
 				tarsier.importJS("js/qrcode.js");
@@ -44,7 +42,12 @@
 			}
 		</script>
 		
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/share.js"></script>
+		<script type="text/javascript" src="js/stat.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		
 		<style type="text/css">
 			#qrcode {
 				background-color: white;
@@ -97,6 +100,7 @@ END:VCARD</textarea>
 		<div>
 			<span>Size:</span>
 			<select id="size" onchange="javascript:test();">
+				<option value="64">极小: 64 x 64</option>
 				<option value="128">小: 128 x 128</option>
 				<option value="256" selected>中: 256 x 256</option>
 				<option value="512">大: 512 x 512</option>
