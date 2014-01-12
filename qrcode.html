@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>QR Code</title>
+		<meta name="keywords" content="qrcode" />
+		<meta name="description" content="" />
+
+		<meta name="viewport" content="width=device-width" />
+		<!--[if lt IE 9]>
+			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/stat.js"></script>
+		<script type="text/javascript">
+			function main() {
+				tarsier.importJS("js/qrcode.js");
+			}
+			
+			function show(text, size) {
+				var div = $("#qrcode");
+				div.html("");
+				
+				var mw = div.parent().width();
+				if (mw > size) {
+					div.css("margin", "10px " + (mw - size) / 2 + "px");
+					div.width(size);
+				} else {
+					div.css("margin", "10px 0px");
+					div.width(size);
+				}
+				
+				qrcode({target: div, text: text, width: size, height: size});
+			}
+			function test() {
+				try {
+					var text = document.getElementById("text").value;
+					var size = document.getElementById("size").value;
+					show(text, size);
+				} catch(e) {
+					alert("Loading libraries, please wait for a second...");
+				}
+			}
+		</script>
+		
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<style type="text/css">
+			#qrcode {
+				background-color: white;
+				width: 90%;
+				margin: 10px auto;
+				padding: 10px;
+			}
+			#textarea {
+				width: 90%;
+				margin: 10px auto;
+			}
+			#textarea textarea {
+				width: 100%;
+				height: 240px;
+				border: 1px solid #777777;
+				padding: 10px 12px;
+				color: #e0e0f5;
+				background-color: #151515;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<header>
+			<h1 id="title">moky.github.com</h1>
+		</header>
+		
+	<div id="wrap">
+		
+		<div id="textarea">
+			<textarea id="text" onblur="javascript:test();">
+BEGIN:VCARD
+VERSION:2.1
+
+FN:Moky
+N:莫;奇
+NICKNAME:moKy
+PHOTO;VALUE=uri:http://url.cn/NgQ9vz
+TEL:0x04 54B5 6E9B
+
+ORG:贝瓦网(www.beva.com)
+TITLE:CTO
+URL:moky.github.com
+ADR;WORK:;;;;Beijing;;China
+
+NOTE:Call me if you can :p
+END:VCARD</textarea>
+		</div>
+		
+		<div>
+			<span>Size:</span>
+			<select id="size" onchange="javascript:test();">
+				<option value="128">小: 128 x 128</option>
+				<option value="256" selected>中: 256 x 256</option>
+				<option value="512">大: 512 x 512</option>
+			</select>
+		</div>
+		
+		<div id="qrcode"><span class="hints">QR code...</span></div>
+		
+		<article>
+			说明：
+			1、在文本框中输入文本信息；
+			2、选择二维码尺寸。
+		</article>
+		
+		<div class="clear">&nbsp;</div>
+		
+		<footer>
+			<div>&copy; 2013 moKy</div>
+		</footer>
+		
+	</div>
+		
+	</body>
+</html>
