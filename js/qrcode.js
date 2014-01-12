@@ -32,9 +32,7 @@ function qrcode(options) {
 	// support UTF-8
 	options.text = utf16to8(options.text);
 	
-	$("<div style=\"display:inline-block;margin:8px;\"></div>")
-	.qrcode(options)
-	.appendTo(options.target);
+	$(options.target).qrcode(options);
 }
 
 //tarsier.importJS("http://jeromeetienne.github.io/jquery-qrcode/jquery.qrcode.min.js");
