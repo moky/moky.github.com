@@ -35,8 +35,11 @@ function qrcode(options) {
 	$(options.target).qrcode(options);
 }
 
-//tarsier.importJS("http://jeromeetienne.github.io/jquery-qrcode/jquery.qrcode.min.js");
-
-tarsier.importJS("http://moky.github.io/Tarsier/3rd/jquery.qrcode.min.js");
-
-
+if (typeof($.fn.qrcode) === "undefined") {
+	/**
+	 *  import lib: qrcode
+	 */
+//	tarsier.importJS("http://jeromeetienne.github.io/jquery-qrcode/jquery.qrcode.min.js");
+	
+	tarsier.importJS("http://moky.github.io/Tarsier/3rd/jquery.qrcode.min.js");
+}
