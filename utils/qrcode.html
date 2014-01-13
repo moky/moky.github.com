@@ -21,6 +21,9 @@
 				
 				tarsier.importJS("../js/qrcode.js");
 				setTimeout(run, 5000);
+				
+				// copyright
+				$("#copyright").html("&copy;" + ((new Date()).getFullYear()) + " moKy");
 			}
 			
 			function show(text, size) {
@@ -125,7 +128,7 @@ END:VCARD</textarea>
 		<div class="clear">&nbsp;</div>
 		
 		<footer>
-			<div>&copy; 2013 moKy</div>
+			<div id="copyright">&copy;2013 moKy</div>
 		</footer>
 		
 	</div>
