@@ -8,7 +8,7 @@ function utf16to8(str) {
 	var out, i, len, c;
 	out = "";
 	len = str.length;
-	for(i = 0; i < len; i++) {
+	for (i = 0; i < len; i++) {
 		c = str.charCodeAt(i);
 		if ((c >= 0x0001) && (c <= 0x007F)) {
 			out += str.charAt(i);
