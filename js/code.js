@@ -22,14 +22,22 @@ function highlight() {
 	
 }
 
-tarsier.ready(function() {
-	$("code").each(highlight);
-});
+if (typeof(tarsier) !== "undefined") {
+	/**
+	 * highlight codes when ready
+	 */
+	tarsier.ready(function() {
+				  $("code").each(highlight);
+	});
+}
 
-//tarsier.importCSS("http://steamdev.com/snippet/css/jquery.snippet.min.css");
-//tarsier.importJS("http://steamdev.com/snippet/js/jquery.snippet.min.js");
-
-tarsier.importCSS("http://moky.github.io/Tarsier/3rd/jquery.snippet.min.css");
-tarsier.importJS("http://moky.github.io/Tarsier/3rd/jquery.snippet.min.js");
-
-
+if (typeof($.fn.snippet) === "undefined") {
+	/**
+	 * import lib: snippet, for highlight codes
+	 */
+//	tarsier.importCSS("http://steamdev.com/snippet/css/jquery.snippet.min.css");
+//	tarsier.importJS("http://steamdev.com/snippet/js/jquery.snippet.min.js");
+	
+	tarsier.importCSS("http://moky.github.io/Tarsier/3rd/jquery.snippet.min.css");
+	tarsier.importJS("http://moky.github.io/Tarsier/3rd/jquery.snippet.min.js");
+}
