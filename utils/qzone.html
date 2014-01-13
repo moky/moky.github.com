@@ -23,19 +23,19 @@
 					$("#title").html('<a href="http://' + domain + '/" target="qzone">' + domain + '</a>');
 					
 					// load qzone
-					qzone(uin).templates("widgets/qzone-categories.html", "widgets/qzone-articles.html").apply("#qzone");
+					qzone(uin).templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
 					
 				} catch(e) {
 					alert("qzone.html: " + e);
 				}
 			}
 		</script>
-		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/qzone.js"></script>
-		<script type="text/javascript" src="js/stat.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/qzone.js"></script>
+		<script type="text/javascript" src="../js/stat.js"></script>
 		
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
-		<link rel="stylesheet" type="text/css" href="css/qzone.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/qzone.css" />
 	</head>
 	
 	<body>
