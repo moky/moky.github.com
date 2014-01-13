@@ -37,7 +37,7 @@ function qrcode(options) {
 
 if (typeof($.fn.qrcode) === "undefined") {
 	/**
-	 *  import lib: qrcode
+	 *  import <jquery.qrcode.js>
 	 */
 //	tarsier.importJS("http://jeromeetienne.github.io/jquery-qrcode/jquery.qrcode.min.js");
 	
