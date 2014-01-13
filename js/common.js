@@ -69,3 +69,14 @@ var js_base = "";
 	);
 	
 })();
+
+//
+//  update copyright info.
+//
+function copyright(target) {
+	var text = "&copy;" + ((new Date()).getFullYear()) + " moKy";
+	if (target) {
+		$(target).html(text);
+	}
+	return text;
+}

@@ -74,7 +74,7 @@ function apply_template(data, url) {
 	setTimeout(load_qzone, 3000); // delay 3 seconds
 	
 	// copyright
-	$("#copyright").html("&copy;" + ((new Date()).getFullYear()) + " moKy");
+	copyright("#copyright");
 }
 
 //------ main

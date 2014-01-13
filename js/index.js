@@ -58,7 +58,7 @@ function main() {
 		widget.articles("#articles", "widgets/articles.html", "sitemap.xml");
 		
 		// copyright
-		$("#copyright").html("&copy;" + ((new Date()).getFullYear()) + " moKy");
+		copyright("#copyright");
 		
 	} catch(e) {
 		//alert("[index.js] error: " + e);

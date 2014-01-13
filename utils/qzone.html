@@ -26,7 +26,7 @@
 					qzone(uin).templates("../widgets/qzone-categories.html", "../widgets/qzone-articles.html").apply("#qzone");
 					
 					// copyright
-					$("#copyright").html("&copy;" + ((new Date()).getFullYear()) + " moKy");
+					copyright("#copyright");
 					
 				} catch(e) {
 					alert("qzone.html: " + e);
