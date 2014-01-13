@@ -27,12 +27,13 @@ function utf16to8(str) {
 function qrcode(options) {
 	// if options is string,
 	if (typeof(options) === "string") {
-		options	= { text: options, target: "#qrcode" };
+		options	= { text: options };
 	}
-	
+	// support chinese chars
 	options.text = utf16to8(options.text);
 	
-	$(options.target).qrcode(options);
+	var target = options.target || "#qrcode";
+	$(target).qrcode(options);
 }
 
 if (typeof($.fn.qrcode) === "undefined") {
