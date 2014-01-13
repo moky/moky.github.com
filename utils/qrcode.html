@@ -13,7 +13,14 @@
 		
 		<script type="text/javascript">
 			function main() {
+				var url = document.location.href;
+				var text = tarsier.http.parseURI(url).fragment;
+				if (text) {
+					document.getElementById("text").value = text;
+				}
+				
 				tarsier.importJS("../js/qrcode.js");
+				setTimeout(run, 5000);
 			}
 			
 			function show(text, size) {
@@ -31,7 +38,7 @@
 				
 				qrcode({target: div, text: text, width: size, height: size});
 			}
-			function test() {
+			function run() {
 				try {
 					var text = document.getElementById("text").value;
 					var size = document.getElementById("size").value;
@@ -78,7 +85,7 @@
 	<div id="wrap">
 		
 		<div id="textarea">
-			<textarea id="text" onblur="javascript:test();">
+			<textarea id="text" onblur="javascript:run();">
 BEGIN:VCARD
 VERSION:2.1
 
@@ -99,7 +106,7 @@ END:VCARD</textarea>
 		
 		<div>
 			<span>Size:</span>
-			<select id="size" onchange="javascript:test();">
+			<select id="size" onchange="javascript:run();">
 				<option value="64">极小: 64 x 64</option>
 				<option value="128">小: 128 x 128</option>
 				<option value="256" selected>中: 256 x 256</option>
