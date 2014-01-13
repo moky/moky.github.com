@@ -33,7 +33,7 @@ if (typeof(tarsier) !== "undefined") {
 
 if (typeof($.fn.snippet) === "undefined") {
 	/**
-	 * import lib: snippet, for highlight codes
+	 * import <jqeury.snippet.js> for highlight codes
 	 */
 //	tarsier.importCSS("http://steamdev.com/snippet/css/jquery.snippet.min.css");
 //	tarsier.importJS("http://steamdev.com/snippet/js/jquery.snippet.min.js");
