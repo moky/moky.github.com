@@ -22,7 +22,9 @@ if (typeof($.fn.qrcode) === "undefined") {
 	/**
 	 *  import <jquery.qrcode.js>
 	 */
-//	tarsier.importJS("http://jeromeetienne.github.io/jquery-qrcode/jquery.qrcode.min.js");
-	
-	tarsier.importJS("http://moky.github.io/Tarsier/3rd/jquery.qrcode.min.js");
+	if (false) {
+		tarsier.importJS("http://jeromeetienne.github.io/jquery-qrcode/jquery.qrcode.min.js");
+	} else {
+		tarsier.importJS("http://moky.github.io/Tarsier/3rd/jquery.qrcode.min.js");
+	}
 }
