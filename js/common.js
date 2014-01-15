@@ -67,11 +67,17 @@ var js_base = "";
 	
 })();
 
+//------------------------------------------------------------------------------
+
+function year() {
+	return (new Date()).getFullYear();
+}
+
 //
 //  update copyright info.
 //
 function copyright(target) {
-	var text = "&copy;" + ((new Date()).getFullYear()) + " moKy";
+	var text = "&copy;" + year() + " moKy";
 	if (target) {
 		$(target).html(text);
 	}

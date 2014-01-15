@@ -11,14 +11,14 @@ function _Callback(data) {
 	if (data.code != 0) {
 		qzone.template.error(data);
 		return;
-	} else if (typeof(data.data) != "object") {
+	} else if (typeof(data.data) !== "object") {
 		//alert("[qzone.js] error: 111");
 		return;
 	}
 	data = data.data;
-	if (typeof(data.cateInfo) == "object" && typeof(data.list) == "undefined") {
+	if (typeof(data.cateInfo) === "object" && typeof(data.list) === "undefined") {
 		qzone.template.categories(data.cateInfo.categoryList);
-	} else if (typeof(data.cateInfo) == "undefined") {
+	} else if (typeof(data.cateInfo) === "undefined") {
 		qzone.template.articles(data.list);
 	} else {
 		//alert("[qzone.js] error: 222");
