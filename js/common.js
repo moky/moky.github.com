@@ -59,7 +59,7 @@ var js_base = "";
 				 *    Main entrance
 				 *
 				 */
-				if (typeof(main) == "function") {
+				if (typeof(main) === "function") {
 					tarsier.ready(main);
 				}
 			 }
