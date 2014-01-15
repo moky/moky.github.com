@@ -52,8 +52,9 @@ var js_base = "";
 	}
 	
 	// import all dependences
-	importJS("http://moky.github.io/Tarsier/tarsier.js",
+	importJS("http://moky.github.io/Tarsier/base.js", // include base lib of tarsier
 			 function() {
+				importJS("http://moky.github.io/Tarsier/tarsier.js"); // include all other tarsier libs
 				/**
 				 *
 				 *    Main entrance
