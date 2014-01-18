@@ -16,7 +16,7 @@
 				var url = document.location.href;
 				var text = tarsier.http.parseURI(url).fragment;
 				if (text) {
-					document.getElementById("text").value = text;
+					document.getElementById("text").value = unescape(text);
 				}
 				
 				tarsier.importJS("../js/qrcode.js");
