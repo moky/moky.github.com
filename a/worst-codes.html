@@ -29,7 +29,7 @@ alert(++[++[++[++[++[[]][+[]]][+[]]][+[]]][+[]]][+[]]+[]
 	+[++[[]][+[]]]
 	+[++[++[++[++[[]][+[]]][+[]]][+[]]][+[]]][+[]]);</code>
 			<textarea id="textarea" style="width: 90%; height: 120px; margin: 0px 2em; border: 1px solid #777777; padding: 10px 12px; color: #e0e0f5; background-color: #151515; "
-				onkeyup="document.getElementById('code').innerHTML = document.getElementById('textarea').value; code.highlight();"
+				onkeyup="$('#code').html(document.getElementById('textarea').value).each(highlight);"
 				onblur="try { eval(document.getElementById('textarea').value); } catch(e) { alert(e); }">
 alert(++[++[++[++[++[[]][+[]]][+[]]][+[]]][+[]]][+[]]+[]
 	+[++[++[[]][+[]]][+[]]][+[]]
