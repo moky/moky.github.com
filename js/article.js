@@ -67,10 +67,6 @@ function show_page_qrcode() {
 	qrcode({target: "#page_qrcode", text: text, width: size, height: size});
 }
 
-function load_qrcode() {
-	tarsier.importJS(js_base + "qrcode.js", show_page_qrcode);
-}
-
 function apply_template(data, url) {
 	
 	// apply template
@@ -86,7 +82,8 @@ function apply_template(data, url) {
 	setTimeout(load_qzone, 3000); // delay 3 seconds
 	
 	// build page qrcode
-	setTimeout(load_qrcode, 3000); // delay 5 seconds
+	tarsier.importJS(js_base + "qrcode.js");
+	setTimeout(show_page_qrcode, 3000); // delay 5 seconds
 	
 	// copyright
 	copyright("#copyright");
