@@ -85,6 +85,27 @@ td {
 		border: 1px solid #555555;
 	}
 	
+	#page_qrcode {
+		margin: -70px 8px 8px 8px;
+	}
+}
+
+#page_qrcode {
+	position: relative;
+	display: inline-block;
+	
+	width: 128px;
+	height: 128px;
+	border: 0px;
+	padding: 5px;
+	
+	background-color: #777777;
+	
+	box-shadow: 0 0 20px #777777;
+	-webkit-box-shadow: 0 0 20px #777777;
+	-moz-box-shadow: 0 0 20px #777777;
+	-o-box-shadow: 0 0 20px #777777;
+	-ms-box-shadow: 0 0 20px #777777;
 }
 
 .clear {
