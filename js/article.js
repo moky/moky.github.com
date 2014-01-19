@@ -63,6 +63,7 @@ function show_page_qrcode() {
 	try {
 		var size = div.width();
 		div.html("");
+		div.css("display", "inline-block");
 		div.css("background-color", "white");
 		qrcode({target: div, text: text, width: size, height: size});
 	} catch(e) {

@@ -92,7 +92,7 @@ td {
 
 #page_qrcode {
 	position: relative;
-	display: inline-block;
+	display: none;
 	
 	width: 128px;
 	height: 128px;
