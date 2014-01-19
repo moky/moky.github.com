@@ -58,13 +58,16 @@ function load_qzone() {
 
 function show_page_qrcode() {
 	var text = document.location.href;
-	tarsier.log.interval = 10000;
-	var div = $("#page_qrcode");
-	var size = div.width();
 	
-	div.html("");
-	div.css("background-color", "white");
-	qrcode({target: "#page_qrcode", text: text, width: size, height: size});
+	var div = $("#page_qrcode");
+	try {
+		var size = div.width();
+		div.html("");
+		div.css("background-color", "white");
+		qrcode({target: "#page_qrcode", text: text, width: size, height: size});
+	} catch(e) {
+		div.remove();
+	}
 }
 
 function apply_template(data, url) {
