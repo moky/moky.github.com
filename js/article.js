@@ -64,7 +64,7 @@ function show_page_qrcode() {
 		var size = div.width();
 		div.html("");
 		div.css("background-color", "white");
-		qrcode({target: "#page_qrcode", text: text, width: size, height: size});
+		qrcode({target: div, text: text, width: size, height: size});
 	} catch(e) {
 		div.remove();
 	}
