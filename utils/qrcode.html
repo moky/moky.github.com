@@ -16,7 +16,12 @@
 				var url = document.location.href;
 				var text = tarsier.http.parseURI(url).fragment;
 				if (text) {
-					document.getElementById("text").value = unescape(text);
+					var string = unescape(text);
+					if (string != text) {
+						var string = new tarsier.String(string, "utf-8");
+						text = string.convertTo("utf-16");
+					}
+					document.getElementById("text").value = text;
 				}
 				
 				tarsier.importJS("../js/qrcode.js");
