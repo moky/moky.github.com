@@ -4,17 +4,17 @@
  *      Moky @ Dec. 19, 2013
  */
 
-function highlight() {
+function highlight(target) {
 	
 	try {
-		var thiz = $(this);
-		var language = thiz.attr("language") || "javascript";
-		var html = thiz.html();
+		target = $(target || this);
+		var language = target.attr("language") || "javascript";
+		var html = target.html();
 		html = html.replace(/\</g, "&lt;");
 		html = html.replace(/\>/g, "&gt;");
 		var pre = $("<pre>" + html + "</pre>");
-		thiz.html("");
-		pre.appendTo(thiz);
+		target.html("");
+		pre.appendTo(target);
 		pre.snippet(language, { style: "dull", showNum: true });
 	} catch(e) {
 		//alert("[code.js] error: " + e);
