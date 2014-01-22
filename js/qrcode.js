@@ -4,6 +4,30 @@
  *      Moky @ Jan. 10, 2014
  */
 
+function canvasToImage(canvas) {
+	var image = new Image();
+	image.src = canvas.toDataURL("png");
+	return image;
+}
+
+function expandCanvas(canvas, border) {
+//	var image = canvasToImage(canvas);
+//	var nwidth = canvas.width + border + border;
+//	var nheight = canvas.height + border + border;
+//	
+////	canvas = document.createElement("canvas");
+//	canvas.width = nwidth;
+//	canvas.height = nheight;
+//	
+//	var context = canvas.getContext("2d");
+//	context.fillStyle="#ffffff";
+//	context.fillRect(0, 0, canvas.width, canvas.height);
+//	
+//	// draw image again
+//	context.drawImage(image, border, border, image.width, image.height);
+	return canvas;
+}
+
 function qrcode(options) {
 	// if options is string,
 	if (typeof(options) === "string") {
@@ -22,16 +46,16 @@ function qrcode(options) {
 	if (canvas && canvas.length > 0) {
 		canvas = canvas[0];
 	} else {
-		tarsier.error("failed to draw qrcode: " + options.text);
+		$(div).appendTo(options.target || "#qrcode");
 		return;
 	}
 	
+	// expand canvas border
+	canvas = expandCanvas(canvas, 4);
 	// build image from canvas data
-	var image = new Image();
-	image.onload = function() {
-		$(image).appendTo(options.target || "#qrcode");
-	}
-	image.src = canvas.toDataURL("png");
+	var image = canvasToImage(canvas);
+	// show image
+	$(image).appendTo(options.target || "#qrcode");
 }
 
 if (typeof($.fn.qrcode) === "undefined") {
