@@ -90,8 +90,9 @@ function apply_template(data, url) {
 	setTimeout(load_qzone, 5000); // delay 5 seconds
 	
 	// build page qrcode
-	tarsier.importJS(js_base + "qrcode.js");
-	setTimeout(show_page_qrcode, 3000); // delay 3 seconds
+	tarsier.importJS(js_base + "qrcode.js", function() {
+		setTimeout(show_page_qrcode, 5000); // delay 5 seconds
+	});
 	
 	// copyright
 	copyright("#copyright");
