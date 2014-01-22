@@ -55,6 +55,8 @@ img, embed {
 	padding: 5px;
 	border: 1px solid #ebebeb;
 	
+	background-color: white;
+	
 	box-shadow: 0 0 20px #ebebeb;
 	-webkit-box-shadow: 0 0 20px #ebebeb;
 	-moz-box-shadow: 0 0 20px #ebebeb;

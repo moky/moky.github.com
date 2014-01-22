@@ -12,9 +12,8 @@
 		<![endif]-->
 		<script type="text/javascript" src="../js/article.js"></script>
 		<style type="text/css">
-			#qrcode canvas {
-				display: inline-block;
-				margin: 5px;
+			#qrcode {
+				background-color: white;
 			}
 		</style>
 	</head>
@@ -126,10 +125,7 @@
 			
 			function show_qrcodes() {
 				// init
-				$("#qrcode")
-				.html("")
-				.css("display", "inline-block")
-				.css("background-color", "white");
+				$("#qrcode").html("");
 				
 				setTimeout(show_resume, 2000);
 				setTimeout(show_vcard, 3000);
