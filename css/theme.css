@@ -141,6 +141,10 @@ footer a {
 	text-align: center;
 }
 
+.bdshare-slide-button-box {
+	z-index: 100;
+}
+
 .log, .error {
 	display: table;
 	
