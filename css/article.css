@@ -65,6 +65,24 @@ td {
 	background-color: #222222;
 }
 
+#page_qrcode {
+	position: relative;
+	display: none;
+	
+	background-color: white;
+	
+	width: 120px;
+	height: 120px;
+	
+	margin: 20px;
+	border: 0px;
+}
+
+#page_qrcode img {
+	margin: 0;
+	padding: 0;
+}
+
 @media screen and (min-device-width: 768px) {
 	
 	article {
@@ -88,22 +106,6 @@ td {
 	#page_qrcode {
 		margin: -70px 8px 8px 8px;
 	}
-}
-
-#page_qrcode {
-	position: relative;
-	display: none;
-	
-	background-color: white;
-	
-	width: 120px;
-	height: 120px;
-	border: 0px;
-}
-
-#page_qrcode img {
-	margin: 0;
-	padding: 0;
 }
 
 .clear {
