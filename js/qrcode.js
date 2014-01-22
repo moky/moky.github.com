@@ -14,8 +14,24 @@ function qrcode(options) {
 	var string = new tarsier.String(options.text);
 	options.text = string.convertTo("utf-8");
 	
-	var target = options.target || "#qrcode";
-	$(target).qrcode(options);
+	// draw qrcode on canvas
+	var div = document.createElement("div");
+	$(div).qrcode(options);
+	
+	var canvas = div.getElementsByTagName("canvas");
+	if (canvas && canvas.length > 0) {
+		canvas = canvas[0];
+	} else {
+		tarsier.error("failed to draw qrcode: " + options.text);
+		return;
+	}
+	
+	// build image from canvas data
+	var image = new Image();
+	image.onload = function() {
+		$(image).appendTo(options.target || "#qrcode");
+	}
+	image.src = canvas.toDataURL("png");
 }
 
 if (typeof($.fn.qrcode) === "undefined") {

@@ -67,6 +67,7 @@ function show_page_qrcode() {
 		div.css("background-color", "white");
 		qrcode({target: div, text: text, width: size, height: size});
 	} catch(e) {
+		tarsier.error(e);
 		div.remove();
 	}
 }
@@ -83,11 +84,11 @@ function apply_template(data, url) {
 					js_base + "../sitemap.xml");
 	
 	// load qzone
-	setTimeout(load_qzone, 3000); // delay 3 seconds
+	setTimeout(load_qzone, 5000); // delay 5 seconds
 	
 	// build page qrcode
 	tarsier.importJS(js_base + "qrcode.js");
-	setTimeout(show_page_qrcode, 3000); // delay 5 seconds
+	setTimeout(show_page_qrcode, 3000); // delay 3 seconds
 	
 	// copyright
 	copyright("#copyright");

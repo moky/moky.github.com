@@ -47,6 +47,7 @@
 					var size = document.getElementById("size").value;
 					show(text, size);
 				} catch(e) {
+					tarsier.error(e);
 					alert("Loading libraries, please wait for a second...");
 				}
 			}
@@ -59,11 +60,8 @@
 		<link rel="stylesheet" type="text/css" href="../css/index.css" />
 		
 		<style type="text/css">
-			#qrcode {
+			#qrcode img {
 				background-color: white;
-				width: 90%;
-				margin: 10px auto;
-				padding: 10px;
 			}
 			#textarea {
 				width: 90%;
