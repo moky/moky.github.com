@@ -60,12 +60,15 @@ function show_page_qrcode() {
 	var text = document.location.href;
 	
 	var div = $("#page_qrcode");
+	
+	var border = 4;
+	var size = div.width() - border - border;
+	
 	try {
-		var size = div.width();
-		div.html("");
+		// draw qrcode
+		qrcode({target: div, text: text, width: size, height: size, border: border});
+		// show
 		div.css("display", "inline-block");
-		div.css("background-color", "white");
-		qrcode({target: div, text: text, width: size, height: size});
 	} catch(e) {
 		tarsier.error(e);
 		div.remove();

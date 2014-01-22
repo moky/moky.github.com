@@ -11,20 +11,24 @@ function canvasToImage(canvas) {
 }
 
 function expandCanvas(canvas, border) {
-//	var image = canvasToImage(canvas);
-//	var nwidth = canvas.width + border + border;
-//	var nheight = canvas.height + border + border;
-//	
-////	canvas = document.createElement("canvas");
-//	canvas.width = nwidth;
-//	canvas.height = nheight;
-//	
-//	var context = canvas.getContext("2d");
-//	context.fillStyle="#ffffff";
-//	context.fillRect(0, 0, canvas.width, canvas.height);
-//	
-//	// draw image again
-//	context.drawImage(image, border, border, image.width, image.height);
+	if (border < 1) {
+		return canvas;
+	}
+	
+	var image = canvasToImage(canvas);
+	var nwidth = canvas.width + border + border;
+	var nheight = canvas.height + border + border;
+	
+//	canvas = document.createElement("canvas");
+	canvas.width = nwidth;
+	canvas.height = nheight;
+	
+	var context = canvas.getContext("2d");
+	context.fillStyle="#ffffff";
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	// draw image again
+	context.drawImage(image, border, border, image.width, image.height);
 	return canvas;
 }
 
@@ -51,7 +55,9 @@ function qrcode(options) {
 	}
 	
 	// expand canvas border
-	canvas = expandCanvas(canvas, 4);
+	if (options.border) {
+		canvas = expandCanvas(canvas, options.border);
+	}
 	// build image from canvas data
 	var image = canvasToImage(canvas);
 	// show image
