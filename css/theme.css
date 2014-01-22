@@ -96,6 +96,8 @@ article {
 	white-space: pre-line;
 	word-wrap: break-word;
 	word-break: break-all;
+	
+	margin: 10px 0px;
 }
 
 code {
