@@ -145,8 +145,9 @@ footer a {
 	z-index: 100;
 }
 
-.log, .error {
+.log, .error, .warn {
 	display: table;
+	/*white-space: pre;*/
 	
 	margin: 1px;
 	padding: 3px 5px;

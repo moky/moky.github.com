@@ -57,18 +57,19 @@ function load_qzone() {
 }
 
 function show_page_qrcode() {
-	var text = document.location.href;
-	
-	var div = $("#page_qrcode");
-	
-	var border = 4;
-	var size = div.width() - border - border;
-	
 	try {
-		// draw qrcode
-		qrcode({target: div, text: text, width: size, height: size, border: border});
-		// show
-		div.css("display", "inline-block");
+		var text = document.location.href;
+		var border = 4;
+		
+		var div = $("#page_qrcode");
+		var size = div.width() - border - border;
+		
+		if (size >= 64) {
+			// draw qrcode
+			qrcode({target: div, text: text, width: size, height: size, border: border});
+			// show
+			div.css("display", "inline-block");
+		}
 	} catch(e) {
 		tarsier.error(e);
 		div.remove();
@@ -90,9 +91,10 @@ function apply_template(data, url) {
 	setTimeout(load_qzone, 5000); // delay 5 seconds
 	
 	// build page qrcode
-	tarsier.importJS(js_base + "qrcode.js", function() {
-		setTimeout(show_page_qrcode, 5000); // delay 5 seconds
+	tarsier.ready(function() {
+		setTimeout(show_page_qrcode, 3000); // delay 3 seconds
 	});
+	tarsier.importJS(js_base + "qrcode.js");
 	
 	// copyright
 	copyright("#copyright");
