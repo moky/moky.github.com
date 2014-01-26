@@ -19,8 +19,10 @@
 					document.getElementById("text").value = text;
 				}
 				
+				tarsier.ready(function() {
+					setTimeout(run, 3000); // delay 3 seconds
+				});
 				tarsier.importJS("../js/qrcode.js");
-				setTimeout(run, 5000);
 				
 				// copyright
 				copyright("#copyright");
@@ -46,6 +48,7 @@
 					var text = document.getElementById("text").value;
 					var size = document.getElementById("size").value;
 					show(text, size);
+					alert("---- OK ----\r\n" + text + "\r\n------------");
 				} catch(e) {
 					tarsier.error(e);
 					alert("Loading libraries, please wait for a second...");
