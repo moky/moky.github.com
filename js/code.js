@@ -4,10 +4,10 @@
  *      Moky @ Dec. 19, 2013
  */
 
-function highlight(target) {
+function highlight() {
 	
 	try {
-		target = $(target || this);
+		var target = $(this);
 		var language = target.attr("language") || "javascript";
 		var html = target.html();
 		html = html.replace(/\</g, "&lt;");
@@ -17,7 +17,7 @@ function highlight(target) {
 		pre.appendTo(target);
 		pre.snippet(language, { style: "dull", showNum: true });
 	} catch(e) {
-		//alert("[code.js] error: " + e);
+		tarsier.error("[code.js] error: " + e);
 	}
 	
 }
