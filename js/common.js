@@ -60,15 +60,22 @@ var js_base = "";
 				 *    Main entrance
 				 *
 				 */
-				if (typeof(main) === "function") {
-					tarsier.ready(main);
-				}
+				tarsier.ready(function() {
+					if (typeof(tarsier.uri.parse) === "function") {
+						$_GET = tarsier.uri.parse(document.location.href).params;
+					}
+					if (typeof(main) === "function") {
+						main();
+					}
+				});
 			 }
 	);
 	
 })();
 
 //------------------------------------------------------------------------------
+
+var $_GET = {};
 
 function year() {
 	return (new Date()).getFullYear();
