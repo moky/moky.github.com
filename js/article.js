@@ -65,6 +65,8 @@ function show_page_qrcode() {
 		var size = div.width() - border - border;
 		
 		if (size >= 64) {
+			// clear content
+			div.html("");
 			// draw qrcode
 			qrcode({target: div, text: text, width: size, height: size, border: border});
 			// show
