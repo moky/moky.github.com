@@ -78,13 +78,6 @@ function show_page_qrcode() {
 	}
 }
 
-function click_page_arcode(message) {
-	show_page_qrcode();
-	if (message) {
-		alert(message);
-	}
-}
-
 function apply_template(data, url) {
 	
 	// apply template
