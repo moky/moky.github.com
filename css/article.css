@@ -28,6 +28,7 @@ blockquote {
 	color: #ffffff;
 	background-color: #333333;
 	font-style: italic;
+	font-size: small;
 	
 	max-width: 100%;
 	margin: 10px 20px;
