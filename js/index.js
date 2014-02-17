@@ -57,6 +57,7 @@ function main() {
 		tarsier.importCSS("3rd/mmenu/css/jquery.mmenu.css");
 		tarsier.importJS("3rd/mmenu/js/jquery.mmenu.min.js",
 						 function() {
+							$("header h1").css("visibility", "visible");
 							var menu = $("aside");
 							menu.css("visibility", "visible");
 							menu.mmenu();
