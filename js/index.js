@@ -1,5 +1,5 @@
 
-(function() {
+!function() {
 
 	/**
 	 *  Environment variables
@@ -46,13 +46,21 @@
 	importJS(__PATH__ + "common.js");
 	importJS(__PATH__ + "widget.js");
 	
-})();
+}();
 
 //------ main
 function main() {
 	try {
 		
 		widget.articles("#articles", "widgets/articles.html", "sitemap.xml");
+		
+		tarsier.importCSS("3rd/mmenu/css/jquery.mmenu.css");
+		tarsier.importJS("3rd/mmenu/js/jquery.mmenu.min.js",
+						 function() {
+							var menu = $("aside");
+							menu.css("visibility", "visible");
+							menu.mmenu();
+						 });
 		
 		// copyright
 		copyright("#copyright");
