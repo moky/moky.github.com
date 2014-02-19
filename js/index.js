@@ -52,8 +52,6 @@
 function main() {
 	try {
 		
-		$(".page").css("height", $(window).height() + "px");
-		
 		widget.articles("#articles", "widgets/articles.html", "sitemap.xml");
 		
 		tarsier.importCSS("3rd/mmenu/css/jquery.mmenu.css");
