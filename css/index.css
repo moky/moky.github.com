@@ -118,6 +118,16 @@ header a {
 	visibility: hidden;
 }
 
+body {
+	overflow: hidden;
+}
+
+.page {
+	height: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
 @media screen and (min-device-width: 768px) {
 	
 	header h1 {
