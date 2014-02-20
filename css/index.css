@@ -114,9 +114,6 @@ hr {
 header a {
 	padding: 5px 8px;
 }
-#menu {
-	visibility: hidden;
-}
 
 @media screen and (min-device-width: 768px) {
 	

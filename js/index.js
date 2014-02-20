@@ -51,17 +51,12 @@
 //------ main
 function main() {
 	try {
-		$("header h1").css("visibility", "hidden");
-		
 		widget.articles("#articles", "widgets/articles.html", "sitemap.xml");
 		
 		tarsier.importCSS("3rd/mmenu/css/jquery.mmenu.css");
 		tarsier.importJS("3rd/mmenu/js/jquery.mmenu.min.js",
 						 function() {
-							$("header h1").css("visibility", "visible");
-							var menu = $("aside");
-							menu.css("visibility", "visible");
-							menu.mmenu();
+							$("aside").mmenu();
 						 });
 		
 		// copyright
