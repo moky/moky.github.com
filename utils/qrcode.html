@@ -28,7 +28,7 @@
 				copyright("#copyright");
 			}
 			
-			function show(text, size) {
+			function draw(text, size) {
 				var div = $("#qrcode");
 				div.html("");
 				
@@ -48,8 +48,14 @@
 					var text = document.getElementById("text");
 					var size = document.getElementById("size");
 					size.focus();
-					show(text.value, size.value);
-					alert("---- START ----\r\n" + text.value + "\r\n----- END -----");
+					// draw qrcode
+					draw(text.value, size.value);
+					
+					// show content
+					var __ = "----------------";
+					var start = __ + " START " + __;
+					var end   = __ + "- END -" + __;
+					alert(start + "\r\n" + text.value + "\r\n" + end);
 				} catch(e) {
 					tarsier.error(e);
 					alert("Loading libraries, please wait for a second...");
