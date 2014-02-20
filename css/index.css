@@ -114,7 +114,7 @@ hr {
 header a {
 	padding: 5px 8px;
 }
-#menu, header h1 {
+#menu {
 	visibility: hidden;
 }
 

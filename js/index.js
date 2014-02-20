@@ -51,6 +51,7 @@
 //------ main
 function main() {
 	try {
+		$("header h1").css("visibility", "hidden");
 		
 		widget.articles("#articles", "widgets/articles.html", "sitemap.xml");
 		
