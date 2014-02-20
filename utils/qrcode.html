@@ -45,10 +45,11 @@
 			}
 			function run() {
 				try {
-					var text = document.getElementById("text").value;
-					var size = document.getElementById("size").value;
-					show(text, size);
-					alert("---- OK ----\r\n" + text + "\r\n------------");
+					var text = document.getElementById("text");
+					var size = document.getElementById("size");
+					size.focus();
+					show(text.value, size.value);
+					alert("---- START ----\r\n" + text.value + "\r\n----- END -----");
 				} catch(e) {
 					tarsier.error(e);
 					alert("Loading libraries, please wait for a second...");
