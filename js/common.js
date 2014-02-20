@@ -66,12 +66,39 @@ var js_base = "";
 					}
 					if (typeof(main) === "function") {
 						main();
+						
+						for (var i = 0; i < 100; ++i) {
+							setTimeout(prepare_links, 500 * i);
+						}
 					}
 				});
 			 }
 	);
 	
 })();
+
+function prepare_links() {
+	
+	function is_link(url) {
+		if (!url) return false;
+		if (url.charAt(0) == "#") return false;
+		if (url.indexOf("javascript:") >= 0) return false;
+		return true;
+	}
+	
+	function process(a) {
+		var href = a.attr("href");
+		if (is_link(href)) {
+			a.attr("title", href);
+			a.attr("onclick", "javascript: document.location.href = unescape('" + escape(href) + "');");
+			a.attr("href", "javascript: void(0);");
+		}
+	}
+	
+	$("a").each(function() {
+		process($(this));
+	});
+}
 
 //------------------------------------------------------------------------------
 
