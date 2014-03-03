@@ -4,10 +4,9 @@
  *      Moky @ Dec. 19, 2013
  */
 
-function highlight() {
-	
+function highlight(target) {
 	try {
-		var target = $(this);
+		target = $(target || this);
 		var language = target.attr("language") || "javascript";
 		var html = target.html();
 		html = html.replace(/\</g, "&lt;");
@@ -19,7 +18,6 @@ function highlight() {
 	} catch(e) {
 		tarsier.error("[code.js] error: " + e);
 	}
-	
 }
 
 if (typeof(tarsier) !== "undefined") {
@@ -27,7 +25,7 @@ if (typeof(tarsier) !== "undefined") {
 	 * highlight codes when ready
 	 */
 	tarsier.ready(function() {
-				  $("code").each(highlight);
+		$("code").each(highlight);
 	});
 }
 
