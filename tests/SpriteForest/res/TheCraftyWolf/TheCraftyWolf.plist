@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SFNode</key>
+	<dict>
+		<key>DefaultScene</key>
+		<string>cover</string>
+		<key>Scenes</key>
+		<dict>
+			<key>back</key>
+			<string>TheCraftyWolf_Back.plist</string>
+			<key>cover</key>
+			<string>TheCraftyWolf_Cover.plist</string>
+			<key>page1</key>
+			<string>TheCraftyWolf_Page1.plist</string>
+			<key>page2</key>
+			<string>TheCraftyWolf_Page2.plist</string>
+			<key>page3</key>
+			<string>TheCraftyWolf_Page3.plist</string>
+			<key>page4</key>
+			<string>TheCraftyWolf_Page4.plist</string>
+			<key>page5</key>
+			<string>TheCraftyWolf_Page5.plist</string>
+			<key>page6</key>
+			<string>TheCraftyWolf_Page6.plist</string>
+			<key>page7</key>
+			<string>TheCraftyWolf_Page7.plist</string>
+		</dict>
+	</dict>
+	<key>Version</key>
+	<string>1.1</string>
+</dict>
+</plist>
