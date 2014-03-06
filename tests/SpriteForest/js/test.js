@@ -1,3 +1,6 @@
+//
+// configuration
+//
 
 document.ccConfig = {
 	COCOS2D_DEBUG:2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
@@ -11,6 +14,9 @@ document.ccConfig = {
 };
 
 //==============================================================================
+//
+// resources
+//
 
 // ebook
 var ebook = {
@@ -51,7 +57,7 @@ var ebook = {
 //		'bg_5.png',
 //		'bg_6.png',
 //		'bg_7.png',
-//		'cover.png',
+		'cover.png',
 ////		'jiaohuadehuli-daoyu.mp3',
 ////		'page.mp3',
 ////		'page1.mp3',
