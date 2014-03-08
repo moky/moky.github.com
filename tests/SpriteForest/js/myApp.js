@@ -15,6 +15,10 @@ var app = app || {};
 		cc.AppController.shareAppController().didFinishLaunchingWithOptions();
 	}
 	
+	function startup(path) {
+		SpriteForest.Lord.getInstance().runIntoForest(path);
+	}
+	
 	function applicationDidFinishLaunching() {
 		if (cc.RenderDoesnotSupport()) {
 			//show Information to user
@@ -23,8 +27,8 @@ var app = app || {};
 		}
 		
 		var config = this._config;
-		var resource = this._resource;
-		var size = resource['size'];
+		var res = this._resource;
+		var size = res['size'];
 		
 		cc.EGLView.getInstance().resizeWithBrowserSize(true);
 		cc.EGLView.getInstance().setDesignResolutionSize(size.width, size.height, cc.RESOLUTION_POLICY.SHOW_ALL);
@@ -38,10 +42,8 @@ var app = app || {};
 		// set FPS. the default value is 1.0/60 if you don't call this
 		director.setAnimationInterval(1.0 / config['frameRate']);
 		
-		//load resources
-		cc.LoaderScene.preload(resource.getFiles(), function() {
-			SpriteForest.Lord.getInstance().runIntoForest(resource.entrance);
-		}, this);
+		// load resources
+		cc.LoaderScene.preload(res.getFiles(), function() { startup(res.entrance); }, this);
 		
 		return true;
 	}

@@ -45,7 +45,7 @@ var ebook = {
 //		'bg_5.png',
 //		'bg_6.png',
 //		'bg_7.png',
-		'cover.png',
+//		'cover.png',
 ////		'jiaohuadehuli-daoyu.mp3',
 ////		'page.mp3',
 ////		'page1.mp3',
