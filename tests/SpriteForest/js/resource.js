@@ -2,9 +2,9 @@
 // ebook resources
 //
 
-var ebook = {
-	size: cc.size(1024, 768),
-	
+var ebook = ebook || {};
+
+ebook['TheCraftyWolf'] = {
 	entrance: 'res/TheCraftyWolf/TheCraftyWolf.plist',
 	
 	root: 'res/TheCraftyWolf/',
@@ -60,29 +60,7 @@ var ebook = {
 //		'xing_2.png',
 		],
 	
-	getFiles: function() {
-		// files
-		var files = arguments.length > 0 ? files : this.files;
-		if (!files) {
-			return [];
-		}
-		
-		// base dir
-		var dir = arguments.length > 0 ? root : this.root;
-		if (!dir) {
-			return files;
-		} else if (dir.charAt(dir.length - 1) != '/') {
-			dir += '/';
-		}
-		
-		// out
-		var array = [];
-		var len = files.length;
-		for (var i = 0; i < len; ++i) {
-			array.push(dir + files[i]);
-		}
-		return array;
-	}
 };
 
-var g_resources = ebook;
+//var g_resource = new app.Resource(ebook['TheCraftyWolf']);
+var g_resource = ebook['TheCraftyWolf'];

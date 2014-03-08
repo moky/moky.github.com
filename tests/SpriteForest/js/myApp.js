@@ -1,13 +1,71 @@
 
 var app = app || {};
 
+//=============================================================== ebook resource
+
 !function(ns) {
 	
-	function Book(config, resource) {
+	function Resource(args) {
+		this.size = args.size ? args.size : cc.size(1024, 768);
+		this.entrance = args.entrance ? args.entrance : args.root + 'main.plist';
+		this.root = args.root;
+		this.files = args.files;
+	}
+	
+	function getFiles(files, root) {
+		// files
+		var files = arguments.length > 0 ? files : this.files;
+		if (!files) {
+			return [];
+		}
+		
+		// base dir
+		var dir = arguments.length > 0 ? root : this.root;
+		if (!dir) {
+			return files;
+		} else if (dir.charAt(dir.length - 1) != '/') {
+			dir += '/';
+		}
+		
+		// out
+		var array = [];
+		var len = files.length;
+		for (var i = 0; i < len; ++i) {
+			array.push(dir + files[i]);
+		}
+		return array;
+	}
+	
+	var prop = {
+		ctor: Resource,
+		getFiles: getFiles,
+		// properties
+		size: null,
+		entrance: null,
+		root: null,
+		files: null,
+	}
+	
+	ns.Resource = cc.Class.extend(prop);
+	
+}(app);
+
+//============================================================ ebook application
+
+!function(ns) {
+	
+	function Book(resource, config) {
 		this._super();
 		
-		this._config = config;
-		this._resource = resource;
+		// resource
+		if (resource instanceof ns.Resource) {
+			this._resource = resource;
+		} else {
+			resource = new ns.Resource(resource);
+			this._resource = resource;
+		}
+		// ccConfig
+		this._config = config ? config : document.ccConfig;
 		
 		cc.COCOS2D_DEBUG = config['COCOS2D_DEBUG'];
 		cc.initDebugSetting();

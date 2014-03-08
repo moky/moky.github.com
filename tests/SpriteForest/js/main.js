@@ -3,7 +3,7 @@
 // application configuration
 //
 
-var g_config = {
+document.ccConfig = {
 	COCOS2D_DEBUG: 2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
 	box2d: false,
 	chipmunk: false,
@@ -17,4 +17,4 @@ var g_config = {
 //
 // create the book
 //
-var myApp = new app.Book(g_config, g_resources);
+var myApp = new app.Book(g_resource, document.ccConfig);
