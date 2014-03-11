@@ -1,11 +1,22 @@
 
+//
+//  Description:
+//      fix a bug that the sprites have no image will show a white face in safari (render mode: canvas only)
+//
+//  source file : 'cocos2d/core/sprite_nodes/CCSprite.js'
+//  function    : _drawForCanvas(ctx)
+//
 !function (sf) {
 	'use strict';
 	var cc = sf.cc;
 	var cn = sf.cn;
 	
-	// fix a bug that the sprites have no image set will show a white face in safari
-	function _drawForCanvas(ctx) {
+	// detecting
+	if (cc.Browser.supportWebGL) {
+		return ;
+	}
+	
+	function draw(ctx) {
 		if (!this._textureLoaded)
 			return;
 		
@@ -50,14 +61,15 @@
 		} else if (locContentSize._width !== 0) {
 			var curColor = this.getColor();
 			//-------- patch by moKy @ 2014-03-08, begin
+			// old codes:
 //			context.fillStyle = "rgba(" + curColor.r + "," + curColor.g + "," + curColor.b + ",1)";
-			if (curColor.r === 255 && curColor.g === 255 && curColor.b === 255 && this._displayedOpacity === 255) {
-				context.fillStyle = "rgba(0,0,0,0)";
-			} else {
+//			context.fillRect(flipXOffset, flipYOffset, locContentSize._width * locEGL_ScaleX, locContentSize._height * locEGL_ScaleY);
+			// new codes:
+			if (curColor.r !== 255 || curColor.g !== 255 || curColor.b !== 255 || this._displayedOpacity !== 255) {
 				context.fillStyle = "rgba(" + curColor.r + "," + curColor.g + "," + curColor.b + "," + this._displayedOpacity / 255 + ")";
+				context.fillRect(flipXOffset, flipYOffset, locContentSize._width * locEGL_ScaleX, locContentSize._height * locEGL_ScaleY);
 			}
 			//-------- patch by moKy @ 2014-03-08, end
-			context.fillRect(flipXOffset, flipYOffset, locContentSize._width * locEGL_ScaleX, locContentSize._height * locEGL_ScaleY);
 		}
 		
 		if (cc.SPRITE_DEBUG_DRAW === 1) {
@@ -85,10 +97,6 @@
 		cc.g_NumberOfDraws++;
 	}
 	
-	if (cc.Browser.supportWebGL) {
-		
-	} else {
-		cc.Sprite.prototype.draw = cc.Sprite.prototype._drawForCanvas = _drawForCanvas;
-	}
+	cc.Sprite.prototype.draw = cc.Sprite.prototype._drawForCanvas = draw;
 	
 }(SpriteForest);
