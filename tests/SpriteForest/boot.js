@@ -76,13 +76,14 @@ boot.jsFiles = [
 		}
 	}
 	
+	var jsFiles = boot.jsFiles || [];
 	// js files
 	if (__SCRIPT__ && __SCRIPT__.getAttribute("main")) {
 		// main.js
 		jsFiles.push(__SCRIPT__.getAttribute("main"));
 	}
 	for (var i = 0; i < boot.jsFiles.length; ++i) {
-		loader.add(__PATH__ + boot.jsFiles[i]);
+		loader.add(__PATH__ + jsFiles[i]);
 	}
 	
 	//
