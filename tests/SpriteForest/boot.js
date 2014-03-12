@@ -1,71 +1,119 @@
+;
+/**
+ *  Author:
+ *      Moky @ Mar. 12, 2014
+ */
 
-!function() {
+//
+// application configuration
+//
+document.ccConfig = {
+	COCOS2D_DEBUG: 2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
+	box2d: false,
+	chipmunk: false,
+	showFPS: true,
+	frameRate: 60,
+	loadExtension: false,
+	renderMode: 1, //Choose of RenderMode: 0(default), 1(Canvas only), 2(WebGL only)
+	tag: 'gameCanvas', //the dom element to run cocos2d on
+};
+
+var boot = boot || {};
+
+boot.jsFiles = [
+	'libs/cocos2d.min.js',
+	'libs/spriteforest.min.js',
 	
-	var importJS = function(url, callback) {
-		
-		var script = document.createElement("script");
-		if (script) {
-			script.type = "text/javascript";
-			script.src = url;
-			
-			// callback
-			script.onload = function() {
-				try {
-					if (typeof callback === 'function') {
-						callback();
-					}
-				} catch(e) {
-					alert("callback error: " + e);
-				}
+	'js/patch.js', // patches for cocos2d
+	
+	'js/myApp.js',
+	'js/resource.js',
+	'js/main.js',
+];
+
+!function(boot) {
+	'use strict';
+	
+	//------------------------------------------------------------- Environments
+	
+	/**
+	 *  Environment variables
+	 */
+	var __FILE__ = 'boot.js'; // current filename
+	var __PATH__ = '';        // current filepath
+	var __SCRIPT__ = null;    // current script
+	
+	var scripts = document.getElementsByTagName('script');
+	if (scripts) {
+		for (var i = scripts.length - 1; i >= 0; --i) {
+			var url = scripts[i].src;
+			var pos = url.indexOf('?');
+			if (pos >= 0) {
+				url = url.substring(0, pos);
 			}
-			script.onreadystatechange = function() { // IE
-				if (this.readyState === "complete") {
-					script.onload();
-				}
+			var pos = url.indexOf('#');
+			if (pos >= 0) {
+				url = url.substring(0, pos);
 			}
-			
-			// load
-			var heads = document.getElementsByTagName("head");
-			var head = heads && heads.length > 0 ? heads[0] : document.documentElement;
-			if (head) {
-				head.appendChild(script);
+			pos = url.lastIndexOf(__FILE__);
+			if (pos > 0) {
+				boot.script = __SCRIPT__ = scripts[i];
+				boot.base = __PATH__ = __SCRIPT__.src.substring(0, pos);
+				break;
 			}
 		}
-		return this;
-	};
+	}
+	
+	//---------------------------------------------------------------- Js Loader
+	
+	var loader = boot.loader = boot.loader || {};
+	
+	loader.add = function(url) {
+		if (this.scripts) {
+			loader.scripts.push(url);
+		} else {
+			loader.scripts = [ url ];
+		}
+	}
+	
+	// js files
+	if (__SCRIPT__ && __SCRIPT__.getAttribute("main")) {
+		// main.js
+		jsFiles.push(__SCRIPT__.getAttribute("main"));
+	}
+	for (var i = 0; i < boot.jsFiles.length; ++i) {
+		loader.add(__PATH__ + boot.jsFiles[i]);
+	}
 	
 	//
-	// launch point
+	// main
 	//
-	var startup = function() {
+	
+	var loaded = 0;
+	
+	var onload = function() {
+		this.removeEventListener('load', onload, false);
+		++loaded;
+		load_next();
+	};
+	
+	var load_next = function () {
+		if (loader.scripts.length <= loaded) {
+			// finished
+			return;
+		}
 		
-		tarsier.importJS('libs/cocos2d.min.js');
-		tarsier.importJS('libs/spriteforest.min.js');
-		// patches for cocos2d
-		tarsier.importJS('js/patch.js');
+		var s = document.createElement('script');
+		s.src = loader.scripts[loaded];
+		s.addEventListener('load', onload, false);
 		
-		tarsier.importJS('js/myApp.js');
-		tarsier.importJS('js/resource.js');
-		tarsier.importJS('js/main.js');
+		// load
+		var head = document.getElementsByTagName("head")[0] || document.documentElement;
+		if (head) {
+			head.appendChild(s);
+		}
 	};
 	
-	//
-	// application configuration
-	//
-	document.ccConfig = {
-		COCOS2D_DEBUG: 2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
-		box2d: false,
-		chipmunk: false,
-		showFPS: true,
-		frameRate: 60,
-		loadExtension: false,
-		renderMode: 1, //Choose of RenderMode: 0(default), 1(Canvas only), 2(WebGL only)
-		tag: 'gameCanvas', //the dom element to run cocos2d on
-	};
+	load_next();
 	
-	//
-	// js loader
-	//
-	importJS('http://moky.github.io/Tarsier/base.js', startup);
-	
-}();
+}(boot);
