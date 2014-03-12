@@ -10,7 +10,6 @@
 		<!--[if lt IE 9]>
 			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<![endif]-->
-		<script type="text/javascript" src="../js/article.js"></script>
 		<style type="text/css">
 			#qrcode {
 				background-color: white;
@@ -137,19 +136,15 @@
 			}
 			
 			// main
-			var _main = main;
-			main = function() {
-				if (typeof(_main) === "function") {
-					_main();
-				}
-				
-				tarsier.importJS("../js/qrcode.js", function() {
-								 tarsier.ready(show_qrcodes);
-				});
+			window.onload = function() {
+				tarsier.importJS("../js/qrcode.js");
+				tarsier.ready(show_qrcodes);
 			};
 		</script>
 		
 		<footer id="author">moKy @ Dec. 12, 2013</footer>
 		
 	</body>
+	
+	<script type="text/javascript" src="../boot.js" main="js/article.js"></script>
 </html>

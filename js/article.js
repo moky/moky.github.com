@@ -1,58 +1,8 @@
 
-(function() {
-
-	/**
-	 *  Environment variables
-	 */
-	var __FILE__ = "article.js"; // current filename
-	var __PATH__ = "";           // current filepath
-	
-	var scripts = document.getElementsByTagName("script");
-	if (scripts) {
-		for (var i = scripts.length - 1; i >= 0; --i) {
-			var pos = scripts[i].src.lastIndexOf(__FILE__);
-			if (pos > 0) {
-				__PATH__ = scripts[i].src.substring(0, pos);
-				break;
-			}
-		}
-	}
-	
-	/**
-	 *  Import javascript file
-	 */
-	function importJS(src, callback) {
-		var script = document.createElement("script");
-		if (script) {
-			script.type = "text/javascript";
-			script.src = src;
-			if (callback) {
-				script.onload = callback;
-				// IE
-				script.onreadystatechange = function() {
-					if (this.readyState === "complete") {
-						callback();
-					}
-				}
-			}
-			var head = document.getElementsByTagName("head")[0] || document.documentElement;
-			if (head) {
-				head.appendChild(script);
-			}
-		}
-	}
-	
-	// import all dependences
-	importJS(__PATH__ + "common.js");
-	importJS(__PATH__ + "widget.js");
-	importJS(__PATH__ + "qzone.js");
-	
-})();
-
 function load_qzone() {
 	
-	qzone().templates(js_base + "../widgets/qzone-categories.html",
-					  js_base + "../widgets/qzone-articles.html").apply("#qzone");
+	qzone().templates(boot.base + "widgets/qzone-categories.html",
+					  boot.base + "widgets/qzone-articles.html").apply("#qzone");
 	
 }
 
@@ -86,8 +36,8 @@ function apply_template(data, url) {
 	
 	// load articles widget
 	widget.articles("#articles",
-					js_base + "../widgets/articles.html",
-					js_base + "../sitemap.xml");
+					boot.base + "widgets/articles.html",
+					boot.base + "sitemap.xml");
 	
 	// load qzone
 	setTimeout(load_qzone, 5000); // delay 5 seconds
@@ -96,7 +46,7 @@ function apply_template(data, url) {
 	tarsier.ready(function() {
 		setTimeout(show_page_qrcode, 3000); // delay 3 seconds
 	});
-	tarsier.importJS(js_base + "qrcode.js");
+	tarsier.importJS(boot.base + "js/qrcode.js");
 	
 	// copyright
 	copyright("#copyright");
@@ -119,3 +69,7 @@ function main() {
 		//alert("article.js: " + e);
 	}
 }
+
+tarsier.importJS(boot.base + "js/widget.js");
+tarsier.importJS(boot.base + "js/qzone.js");
+tarsier.ready(main);

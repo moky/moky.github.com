@@ -6,7 +6,7 @@
 
 function highlight(target) {
 	try {
-		target = $(target || this);
+		target = $(typeof target === 'object' ? target : this);
 		var language = target.attr("language") || "javascript";
 		var html = target.html();
 		html = html.replace(/\</g, "&lt;");

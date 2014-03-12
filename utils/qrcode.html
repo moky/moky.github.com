@@ -12,22 +12,6 @@
 		<![endif]-->
 		
 		<script type="text/javascript">
-			function main() {
-				var url = document.location.href;
-				var text = tarsier.uri.parse(url).fragment;
-				if (text) {
-					document.getElementById("text").value = text;
-				}
-				
-				tarsier.ready(function() {
-					setTimeout(run, 3000); // delay 3 seconds
-				});
-				tarsier.importJS("../js/qrcode.js");
-				
-				// copyright
-				copyright("#copyright");
-			}
-			
 			function draw(text, size) {
 				var div = $("#qrcode");
 				div.html("");
@@ -61,9 +45,22 @@
 					alert("Loading libraries, please wait for a second...");
 				}
 			}
+			
+			window.onload = function() {
+				var url = document.location.href;
+				var text = tarsier.uri.parse(url).fragment;
+				if (text) {
+					document.getElementById("text").value = text;
+				}
+				
+				run();
+				
+				// copyright
+				copyright("#copyright");
+			}
 		</script>
 		
-		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../boot.js" main="js/qrcode.js"></script>
 		<script type="text/javascript" src="../js/share.js"></script>
 		<script type="text/javascript" src="../js/stat.js"></script>
 		

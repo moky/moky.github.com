@@ -11,7 +11,7 @@
 			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<![endif]-->
 		<script language="javascript">
-			function main() {
+			window.onload = function() {
 				try {
 					
 					var uin = $_GET["uin"] || "1292823";
@@ -30,8 +30,7 @@
 				}
 			}
 		</script>
-		<script type="text/javascript" src="../js/common.js"></script>
-		<script type="text/javascript" src="../js/qzone.js"></script>
+		<script type="text/javascript" src="../boot.js" main="js/qzone.js"></script>
 		<script type="text/javascript" src="../js/stat.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="../css/index.css" />
