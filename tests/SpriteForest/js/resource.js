@@ -5,9 +5,9 @@
 var ebook = ebook || {};
 
 ebook['TheCraftyWolf'] = {
-	entrance: 'res/TheCraftyWolf/TheCraftyWolf.plist',
+	entrance: (boot && boot.base ? boot.base : '') + 'res/TheCraftyWolf/TheCraftyWolf.plist',
 	
-	root: 'res/TheCraftyWolf/',
+	root: (boot && boot.base ? boot.base : '') + 'res/TheCraftyWolf/',
 	
 	files: [
 		'Page1_default.plist',
