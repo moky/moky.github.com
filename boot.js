@@ -56,27 +56,31 @@ var boot = boot || {};
 		'3rd/jquery.min.js',
 		'3rd/jquery.tmpl.min.js',
 		'3rd/jquery.xml2json.js',
-	
-		'src/base.js',
-		'src/log.js',
-		'src/object.js',
-		'src/string.js',
-		'src/string.utf.js',
-		'src/string.gb2312.js',
-		'src/string.base64.js',
-		'src/xml.js',
-		'src/http.js',
-		'src/template.js',
-		'src/widget.js',
+		
+//		'src/base.js',
+//		'src/log.js',
+//		'src/object.js',
+//		'src/string.js',
+//		'src/string.utf.js',
+//		'src/string.gb2312.js',
+//		'src/string.base64.js',
+//		'src/xml.js',
+//		'src/http.js',
+//		'src/template.js',
+//		'src/widget.js',
+		
+//		'build/tarsier-v1.1.0.js',
+		'build/tarsier.min.js',
 	];
 	for (var i = 0; i < libFiles.length; ++i) {
-		loader.add('/~Moky/GitHub/Tarsier/' + libFiles[i]);
+		loader.add('http://moky.github.io/Tarsier/' + libFiles[i]);
 	}
 	// lib files prepared
 	
 	// preparing common files
 	var jsFiles = [
 		'js/common.js',
+		'js/stat.js',
 	];
 	if (__SCRIPT__ && __SCRIPT__.getAttribute("main")) {
 		// main.js
