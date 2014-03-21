@@ -87,7 +87,11 @@ var boot = boot || {};
 		jsFiles.push(__SCRIPT__.getAttribute("main"));
 	}
 	for (var i = 0; i < jsFiles.length; ++i) {
-		loader.add(__PATH__ + jsFiles[i]);
+		if (jsFiles[i][0] === '/') {
+			loader.add(jsFiles[i]);
+		} else {
+			loader.add(__PATH__ + jsFiles[i]);
+		}
 	}
 	// common files prepared
 	
