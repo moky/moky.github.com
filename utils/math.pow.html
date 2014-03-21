@@ -13,17 +13,23 @@
 		
 		<script type="text/javascript">
 			
+			function memory_key(x, y) {
+				return x + '^' + y;
+			}
+			
 			// output
 			function clear_output() {
 				var div = document.getElementById("output");
-				div.innerHTML = '';
+				div.innerHTML = "";
+				var div = document.getElementById("result");
+				div.innerHTML = "正在计算...";
 			}
 			function output(msg) {
 				var div = document.getElementById("output");
 				div.innerHTML = "<div>" + msg + "</div>" + div.innerHTML;
 			}
 			function result(x, y, d) {
-				var msg = '<span>' + x + '^' + y + ' = </span>' + d.stringValue();
+				var msg = '<span>' + memory_key(x, y) + ' = </span>' + d.stringValue();
 				var div = document.getElementById("result");
 				div.innerHTML = "<div>" + msg + "</div>";// + div.innerHTML;
 			}
@@ -31,25 +37,25 @@
 			// memory cache
 			var pool = {};
 			function push(x, y, d) {
-				pool[x + '^' + y] = d.copy();
-				output('<span>' + x + '^' + y + ' = </span>' + d.stringValue());
+				pool[memory_key(x, y)] = d.copy(); // save a copy of the big integer
+				output('<span>' + memory_key(x, y) + ' = </span>' + d.stringValue());
 			}
 			function get(x, y) {
-				return pool[x + '^' + y];
+				return pool[memory_key(x, y)];
 			}
 			
 			// calculating
 			function step(x, y, i, fx) {
-				push(x, i, fx); // x^1 = fx
+				push(x, i, fx); // x^i = fx
 				if (i >= y) {
 					result(x, i, fx);
-					alert('Mission Accomplished!');
+					alert("Mission Accomplished!");
 					return;
 				}
 				var t = y - i;
 				if (t > i) {
-					fx.multiply_assign(fx);
-					step(x, y, i + i, fx);
+					fx.multiply_assign(fx); // fx *= fx
+					setTimeout(function() { step(x, y, i + i, fx); }, 1);
 					return;
 				}
 				var dx = null;
@@ -62,15 +68,15 @@
 					alert("It's impossible!");
 					return;
 				}
-				fx.multiply_assign(dx);
-				step(x, y, i + t, fx);
+				fx.multiply_assign(dx); // fx *= dx
+				setTimeout(function() { step(x, y, i + t, fx); }, 1);
 			}
 			
 			function pow(x, y) {
 				clear_output();
 				
-				var fx = tarsier.Integer.create(x);
-				step(x, y, 1, fx);
+				var fx = tarsier.Integer.create(x); // big integer
+				setTimeout(function() { step(x, y, 1, fx); }, 1);
 			}
 			
 			function calculate() {
