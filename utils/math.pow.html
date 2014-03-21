@@ -105,11 +105,25 @@
 				setTimeout(function() { step(x, y, 1, fx); }, 1);
 			}
 			
+			function int_value(v) {
+				if (!v) return 0;
+				v = v.toString();
+				var i = v[0] == '-' || v[0] == '+' ? 1 : 0;
+				for (; i < v.length; ++i) {
+					if (v[i] < '0' || v[i] > '9') {
+						break;
+					}
+				}
+				return v.substring(0, i);
+			}
+			
 			function calculate() {
 				var _x = document.getElementById('x');
 				var _y = document.getElementById('y');
-				var x = Math.abs(parseInt(_x.value));
-				var y = Math.abs(parseInt(_y.value));
+				var x = _x.value;
+				var y = _y.value;
+				x = int_value(x);
+				x = int_value(x);
 				_x.value = x;
 				_y.value = y;
 				pow(x, y);
