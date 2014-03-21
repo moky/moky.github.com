@@ -28,6 +28,11 @@
 				var div = document.getElementById("output");
 				div.innerHTML = "<div>" + msg + "</div>" + div.innerHTML;
 			}
+			
+			function middle_result(x, i, msg) {
+				var msg = '<span>' + memory_key(x, i) + ' = </span>' + msg;
+				output(msg);
+			}
 			function result(x, y, d) {
 				var msg = '<span>' + memory_key(x, y) + ' = </span>' + d.stringValue();
 				var div = document.getElementById("result");
@@ -38,10 +43,14 @@
 			var pool = {};
 			function push(x, y, d) {
 				pool[memory_key(x, y)] = d.copy(); // save a copy of the big integer
-				output('<span>' + memory_key(x, y) + ' = </span>' + d.stringValue());
+				middle_result(x, y, d.stringValue());
 			}
 			function get(x, y) {
-				return pool[memory_key(x, y)];
+				var d = pool[memory_key(x, y)];
+				if (d) {
+					middle_result(x, y, '(cache)');
+				}
+				return d;
 			}
 			
 			// calculating
