@@ -28,6 +28,7 @@
 				div.innerHTML = "<div>" + msg + "</div>";// + div.innerHTML;
 			}
 			
+			// memory cache
 			var pool = {};
 			function push(x, y, d) {
 				pool[x + '^' + y] = d.copy();
@@ -37,6 +38,7 @@
 				return pool[x + '^' + y];
 			}
 			
+			// calculating
 			function step(x, y, i, fx) {
 				push(x, i, fx); // x^1 = fx
 				if (i >= y) {
@@ -81,6 +83,7 @@
 				pow(x, y);
 			}
 			
+			// main
 			window.onload = function() {
 				
 				document.getElementById('submit').onclick = calculate;
