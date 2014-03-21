@@ -46,7 +46,6 @@
 			
 			// calculating
 			function step(x, y, i, fx) {
-				push(x, i, fx); // x^i = fx
 				if (i >= y) {
 					result(x, i, fx);
 					alert("Mission Accomplished!");
@@ -54,7 +53,14 @@
 				}
 				var t = y - i;
 				if (t > i) {
-					fx.multiply_assign(fx); // fx *= fx
+					var tx = get(x, i + i);
+					if (tx) {
+						fx = tx; // cache value
+					} else {
+						fx = fx.multiply_assign(fx); // fx *= fx
+						push(x, i + i, fx);
+					}
+					
 					setTimeout(function() { step(x, y, i + i, fx); }, 1);
 					return;
 				}
@@ -68,14 +74,25 @@
 					alert("It's impossible!");
 					return;
 				}
-				fx.multiply_assign(dx); // fx *= dx
+				var tx = get(x, i + t);
+				if (tx) {
+					fx = tx; // cache value
+				} else {
+					fx = fx.multiply_assign(dx); // fx *= dx
+					push(x, i + t, fx);
+				}
+				
 				setTimeout(function() { step(x, y, i + t, fx); }, 1);
 			}
 			
 			function pow(x, y) {
 				clear_output();
 				
-				var fx = tarsier.Integer.create(x); // big integer
+				var fx = get(x, 1);
+				if (!fx) {
+					fx = tarsier.Integer.create(x); // big integer
+					push(x, 1, fx);
+				}
 				setTimeout(function() { step(x, y, 1, fx); }, 1);
 			}
 			
