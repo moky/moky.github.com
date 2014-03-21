@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>幂运算</title>
+		<meta name="keywords" content="qrcode" />
+		<meta name="description" content="" />
+
+		<meta name="viewport" content="width=device-width" />
+		<!--[if lt IE 9]>
+			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+		
+		<script type="text/javascript">
+			
+			// output
+			function clear_output() {
+				var div = document.getElementById("output");
+				div.innerHTML = '';
+			}
+			function output(msg) {
+				var div = document.getElementById("output");
+				div.innerHTML = "<div>" + msg + "</div>" + div.innerHTML;
+			}
+			function result(x, y, d) {
+				var msg = '<span>' + x + '^' + y + ' = </span>' + d.stringValue();
+				var div = document.getElementById("result");
+				div.innerHTML = "<div>" + msg + "</div>";// + div.innerHTML;
+			}
+			
+			var pool = {};
+			function push(x, y, d) {
+				pool[x + '^' + y] = d.copy();
+				output('<span>' + x + '^' + y + ' = </span>' + d.stringValue());
+			}
+			function get(x, y) {
+				return pool[x + '^' + y];
+			}
+			
+			function step(x, y, i, fx) {
+				push(x, i, fx); // x^1 = fx
+				if (i >= y) {
+					result(x, i, fx);
+					alert('Mission Accomplished!');
+					return;
+				}
+				var t = y - i;
+				if (t > i) {
+					fx.multiply_assign(fx);
+					step(x, y, i + i, fx);
+					return;
+				}
+				var dx = null;
+				while (t > 0) {
+					dx = get(x, t);
+					if (dx) break;
+					--t;
+				}
+				if (!dx) {
+					alert("It's impossible!");
+					return;
+				}
+				fx.multiply_assign(dx);
+				step(x, y, i + t, fx);
+			}
+			
+			function pow(x, y) {
+				clear_output();
+				
+				var fx = tarsier.Integer.create(x);
+				step(x, y, 1, fx);
+			}
+			
+			function calculate() {
+				var _x = document.getElementById('x');
+				var _y = document.getElementById('y');
+				var x = Math.abs(parseInt(_x.value));
+				var y = Math.abs(parseInt(_y.value));
+				_x.value = x;
+				_y.value = y;
+				pow(x, y);
+			}
+			
+			window.onload = function() {
+				
+				document.getElementById('submit').onclick = calculate;
+				
+				document.getElementById('loading').style.display = 'none';
+				document.getElementById('tray').style.display = 'block';
+				
+				// copyright
+				copyright("#copyright");
+			}
+		</script>
+		
+		<script type="text/javascript" src="../boot.js"></script>
+		<script type="text/javascript" src="../js/share.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style type="text/css">
+			div {
+				word-wrap: break-word;
+				word-break: break-all;
+			}
+			input {
+				background-color: #999999;
+				border: 1px solid #cccccc;
+				text-align: center;
+			}
+			button {
+				font-size: 18px;
+			}
+			#x {
+				font-size: 24px;
+				width: 150px;
+				height: 32px
+			}
+			#y {
+				font-size: 12px;
+				width: 50px;
+				height: 16px;
+				vertical-align: top;
+			}
+			
+			#tray {
+				display: none;
+			}
+			#output {
+				text-align: right;
+				font-size: 12px;
+				font-family: "Courier";
+			}
+			#output div {
+				margin: 5px 10px;
+				border-bottom: 1px dashed #333;
+			}
+			#result {
+				margin: 20px;
+				color: red;
+			}
+			
+			#result span, #output span {
+				color: green;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<header>
+			<h1 id="title">moky.github.com</h1>
+		</header>
+		
+	<div id="wrap">
+		
+		<div id="loading">Loading...</div>
+		
+		<div id="tray">
+			<div>
+				求
+				<input type="text" id="x" value="6" />
+				的
+				<input type="text" id="y" value="13" />
+				次幂
+				<button id="submit">结果是</button>
+			</div>
+			
+			<div id="result"></div>
+			<div id="output"></div>
+		</div>
+		
+		<div class="clear">&nbsp;</div>
+		
+		<footer>
+			<div id="copyright">&copy;2013 moKy</div>
+		</footer>
+		
+	</div>
+		
+	</body>
+</html>
