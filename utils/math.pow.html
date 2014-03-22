@@ -27,8 +27,16 @@
 		
 		<script type="text/javascript">
 			
-			function memory_key(x, y) {
-				return x + ' ^ ' + y;
+			function int_value(v) {
+				if (!v) return 0;
+				v = v.toString();
+				var i = v[0] == '-' || v[0] == '+' ? 1 : 0;
+				for (; i < v.length; ++i) {
+					if (v[i] < '0' || v[i] > '9') {
+						break;
+					}
+				}
+				return v.substring(0, i);
 			}
 			
 			// output
@@ -43,99 +51,37 @@
 				div.innerHTML = "<div>" + msg + "</div>" + div.innerHTML;
 			}
 			
+			// results
 			function middle_result(x, i, msg) {
 				x = tarsier.Integer.create(x).stringValue();
-				i = tarsier.Integer.create(i).stringValue();
-				var msg = '<span>' + memory_key(x, i) + ' = </span>' + msg;
+				var msg = '<span>' + x + ' ^ ' + i + ' = </span>' + msg;
 				output(msg);
 			}
 			function result(x, y, d) {
 				x = tarsier.Integer.create(x).stringValue();
-				y = tarsier.Integer.create(y).stringValue();
-				var msg = '<span>' + memory_key(x, y) + ' = </span>' + d.stringValue();
+				var msg = '<span>' + x + ' ^ ' + y + ' = </span>' + d.stringValue();
 				var div = document.getElementById("result");
 				div.innerHTML = "<div>" + msg + "</div>";// + div.innerHTML;
 			}
 			
-			// memory cache
-			var pool = {};
-			function push(x, y, d) {
-				pool[memory_key(x, y)] = d.copy(); // save a copy of the big integer
-				middle_result(x, y, d.stringValue());
-			}
-			function get(x, y) {
-				var d = pool[memory_key(x, y)];
-				if (d) {
-					middle_result(x, y, '(cache)');
-				}
-				return d;
-			}
-			
-			// calculating
-			function step(x, y, i, fx) {
+			// callback
+			function callback(x, i, d, cache) {
+				var _y = document.getElementById('y');
+				var y = _y.value;
+				y = int_value(y);
+				
 				if (i >= y) {
-					result(x, i, fx);
-					alert("Mission Accomplished!");
-					return;
-				}
-				var t = y - i;
-				if (t > i) {
-					var tx = get(x, i + i);
-					if (tx) {
-						fx = tx; // cache value
-					} else {
-						fx = fx.multiply_assign(fx); // fx *= fx
-						push(x, i + i, fx);
-					}
-					
-					setTimeout(function() { step(x, y, i + i, fx); }, 1);
-					return;
-				}
-				var dx = null;
-				while (t > 0) {
-					dx = get(x, t);
-					if (dx) break;
-					--t;
-				}
-				if (!dx) {
-					alert("It's impossible!");
-					return;
-				}
-				var tx = get(x, i + t);
-				if (tx) {
-					fx = tx; // cache value
+					result(x, i, d);
+				} else if (cache) {
+					middle_result(x, i, "(cache)");
 				} else {
-					fx = fx.multiply_assign(dx); // fx *= dx
-					push(x, i + t, fx);
+					middle_result(x, i, d.stringValue());
 				}
-				
-				setTimeout(function() { step(x, y, i + t, fx); }, 1);
-			}
-			
-			function pow(x, y) {
-				clear_output();
-				
-				var fx = get(x, 1);
-				if (!fx) {
-					fx = tarsier.Integer.create(x); // big integer
-					push(x, 1, fx);
-				}
-				setTimeout(function() { step(x, y, 1, fx); }, 1);
-			}
-			
-			function int_value(v) {
-				if (!v) return 0;
-				v = v.toString();
-				var i = v[0] == '-' || v[0] == '+' ? 1 : 0;
-				for (; i < v.length; ++i) {
-					if (v[i] < '0' || v[i] > '9') {
-						break;
-					}
-				}
-				return v.substring(0, i);
 			}
 			
 			function calculate() {
+				clear_output();
+				
 				var _x = document.getElementById('x');
 				var _y = document.getElementById('y');
 				var x = _x.value;
@@ -144,7 +90,8 @@
 				y = int_value(y);
 				_x.value = x;
 				_y.value = y;
-				pow(x, y);
+				
+				tarsier.Math.pow(x, y, callback);
 			}
 			
 			// main
