@@ -48,7 +48,7 @@
 			}
 			function output(msg) {
 				var div = document.getElementById("output");
-				div.innerHTML = "<div>" + msg + "</div>" + div.innerHTML;
+				div.innerHTML = "<div class=\"output_line\">" + msg + "</div>" + div.innerHTML;
 			}
 			
 			// results
@@ -139,12 +139,10 @@
 			#tray {
 				display: none;
 			}
-			#output {
+			.output_line {
 				text-align: right;
 				font-size: 12px;
 				font-family: "Courier";
-			}
-			#output div {
 				margin: 5px 10px;
 				border-bottom: 1px dashed #333;
 			}
@@ -178,6 +176,8 @@
 			</div>
 			
 			<div id="result"></div>
+			
+			<div class="output_line">&lt;计算过程&gt;</div>
 			<div id="output"></div>
 		</div>
 		
