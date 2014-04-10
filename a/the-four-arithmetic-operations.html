@@ -64,7 +64,7 @@ static double node(const char * buffer, int offset, int * bounds) {
 		return calculate(buffer, offset + 1, bounds); // calculate sub expression
 	}
 	if (buffer[offset] == '-') {
-		return -node(buffer, offset + 1, bounds);// format: '-(x)'
+		return -node(buffer, offset + 1, bounds); // format: '-(x)'
 	}
 	for (pos = offset + 1; pos < *bounds; ++pos) {
 		if (buffer[pos] == '+' ||
