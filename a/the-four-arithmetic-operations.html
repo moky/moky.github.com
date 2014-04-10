@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>四则运算解析器 - C语言</title>
+		<meta name="keywords" content="四则运算解析器 - C语言" />
+		<meta name="description" content="C语言源代码之四则运算解析器" />
+		
+		<meta name="viewport" content="width=device-width" />
+		<!--[if lt IE 9]>
+			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		
+		<header id="title">四则运算解析器 - C语言</header>
+		
+		<article id="body">
+			最近在写 <a href="http://github.com/moky/SnowCat">SnowCat</a> 的 iOS 版，由于模版里大量用到各种参数，
+			之前写<a href="http://github.com/moky/SpriteForest">精灵森林</a>的时候，那些参数通常都是固定的值，
+			最多支持几个环境变量替换即可，
+			这次我想支持更多。。。
+			
+			另一方面，精灵森林由于是基于 Cocos2d 图形库的，在适配方面没有太大问题，
+			而 SnowCat-iOS 是基于 UIKit 的，所以就遇到了计算的需求。
+			
+			反正是躲不掉了，所以还是支持一下表达式吧。。。。
+			
+			我嫌网上那些实现代码太过复杂，而我需要的是简单高效的四则运算解析，
+			所以就花了点时间用 C 语言实现了一个。
+			
+			因此就有了下面这个副产品，这里 share 一下给大家。
+			
+			
+			BTW: 前些天看“最强大脑”时忽然萌生一个念头，
+			也即兴写了一枚个人觉得还蛮好玩的小玩意儿：<a href="http://moky.github.com/utils/math.pow">超大自然数幂运算</a>，
+			一并分享给大家 ^_^
+			
+			
+			-------- 下面是“四则运算解析器”的源代码 --------
+			
+			(eval.h/c)
+<code language="c">
+//
+//  eval.h
+//
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+double eval(const char * str);
+
+//
+//  eval.c
+//
+#include "eval.h"
+
+static double calculate(const char * buffer, int offset, int * bounds);
+
+static double node(const char * buffer, int offset, int * bounds) {
+	int pos;
+	
+	if (buffer[offset] == '(') {
+		return calculate(buffer, offset + 1, bounds); // calculate sub expression
+	}
+	if (buffer[offset] == '-') {
+		return -node(buffer, offset + 1, bounds);// format: '-(x)'
+	}
+	for (pos = offset + 1; pos < *bounds; ++pos) {
+		if (buffer[pos] == '+' ||
+			buffer[pos] == '-' ||
+			buffer[pos] == '*' ||
+			buffer[pos] == '/' ||
+			buffer[pos] == ')') {
+			*bounds = pos;
+			break;
+		}
+	}
+	return atof(buffer + offset);
+}
+
+static double calculate(const char * buffer, int offset, int * bounds)
+{
+	int pos = *bounds;
+	float left = node(buffer, offset, &pos), right;
+	
+	// primary operations
+	do {
+		if (pos >= *bounds) {
+			return left; // finished
+		}
+		if (buffer[pos] == ')') {
+			*bounds = pos + 1;
+			return left; // end sub expression
+		}
+		
+		offset = pos + 1;
+		
+		if (buffer[pos] == '*') {
+			pos = *bounds;
+			left *= node(buffer, offset, &pos);
+			continue;
+		}
+		
+		if (buffer[pos] == '/') {
+			pos = *bounds;
+			right = node(buffer, offset, &pos);
+			left = (right == 0 ? 0x7FFFFFFF : left / right);
+			continue;
+		}
+		
+		break;
+	} while (1);
+	
+	// secondary operations
+	if (offset >= *bounds) {
+		return left; // finished
+	} else if (buffer[pos] == '+') {
+		return left + calculate(buffer, offset, bounds);
+	} else if (buffer[pos] == '-') {
+		return left + calculate(buffer, offset - 1, bounds);
+	}
+	
+	printf("error: %s, start: %d, end: %d, pos: %d\n", buffer, offset, *bounds, pos);
+	return 0x7FFFFFFF;
+}
+
+double eval(const char * str)
+{
+	size_t len = strlen(str);
+	char * buffer = (char *)malloc(len);
+	int i, j;
+	double result;
+	
+	// remove white spaces
+	bzero(buffer, len);
+	for (i = 0, j = 0; i < len; ++i) {
+		if (str[i] != ' ' && str[i] != '\t') {
+			buffer[j] = str[i];
+			++j;
+		}
+	}
+	
+	// calculate
+	result = calculate(buffer, 0, &j);
+	free(buffer);
+	return result;
+}
+</code>
+		
+			测试程序：
+		
+			(main.c)
+<code language="c">
+#include<eval.h>
+
+int main(int argc, char * argv[])
+{
+	if (argc != 2) {
+		printf("\n"
+			   "    Usage:\n"
+			   "\n"
+			   "        %s \"1 + (2 - 3) * 4 / 5\"\n"
+			   "\n",
+			   argv[0]);
+		return 1;
+	}
+	
+	double result = eval(argv[1]);
+	
+	printf("\n"
+		   "    Result: %lf\n"
+		   "\n",
+		   result);
+	
+	return 0;
+}
+</code>
+			
+		</article>
+		
+		<footer id="author">moKy @ Apr. 10, 2014</footer>
+		
+	</body>
+	
+	<script type="text/javascript" src="../boot.js" main="js/article.js"></script>
+</html>
