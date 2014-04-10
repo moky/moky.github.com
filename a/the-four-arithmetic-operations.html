@@ -45,7 +45,6 @@
 //  eval.h
 //
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 
 double eval(const char * str);
@@ -54,6 +53,10 @@ double eval(const char * str);
 //  eval.c
 //
 #include "eval.h"
+
+#ifndef MAXFLOAT
+#define MAXFLOAT    0x1.fffffep+127f
+#endif
 
 static double calculate(const char * buffer, int offset, int * bounds);
 
@@ -66,6 +69,7 @@ static double node(const char * buffer, int offset, int * bounds) {
 	if (buffer[offset] == '-') {
 		return -node(buffer, offset + 1, bounds); // format: '-(x)'
 	}
+	
 	for (pos = offset + 1; pos < *bounds; ++pos) {
 		if (buffer[pos] == '+' ||
 			buffer[pos] == '-' ||
@@ -105,7 +109,7 @@ static double calculate(const char * buffer, int offset, int * bounds)
 		if (buffer[pos] == '/') {
 			pos = *bounds;
 			right = node(buffer, offset, &pos);
-			left = (right == 0 ? 0x7FFFFFFF : left / right);
+			left = (right == 0 ? MAXFLOAT : left / right);
 			continue;
 		}
 		
@@ -121,8 +125,8 @@ static double calculate(const char * buffer, int offset, int * bounds)
 		return left + calculate(buffer, offset - 1, bounds);
 	}
 	
-	printf("error: %s, start: %d, end: %d, pos: %d\n", buffer, offset, *bounds, pos);
-	return 0x7FFFFFFF;
+	// error
+	return MAXFLOAT;
 }
 
 double eval(const char * str)
@@ -152,10 +156,14 @@ double eval(const char * str)
 		
 			(main.c)
 <code language="c">
-#include<eval.h>
+#include <stdio.h>
+
+#include "eval.h"
 
 int main(int argc, char * argv[])
 {
+	double result;
+	
 	if (argc != 2) {
 		printf("\n"
 			   "    Usage:\n"
@@ -166,7 +174,7 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 	
-	double result = eval(argv[1]);
+	result = eval(argv[1]);
 	
 	printf("\n"
 		   "    Result: %lf\n"
