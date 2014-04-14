@@ -120,7 +120,7 @@ static double eval(const char * buffer, int offset, int * bounds)
 	if (buffer[pos] == '+') {
 		return left + eval(buffer, offset, bounds);
 	} else if (buffer[pos] == '-') {
-		return left + eval(buffer, offset - 1, bounds);
+		return left + eval(buffer, offset - 1, bounds); // x - y - z &lt;=&gt; x + (-y - z)
 	}
 	
 	// error
@@ -143,7 +143,7 @@ double calculate(const char * str)
 		}
 	}
 	
-	// calculate
+	// start
 	result = eval(buffer, 0, &j);
 	free(buffer);
 	return result;
