@@ -44,14 +44,15 @@
 //
 //  arith.h
 //
-#include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
 
 double calculate(const char * str);
 
 //
 //  arith.c
 //
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
 #include "arith.h"
 
 #ifndef MAXFLOAT
@@ -60,7 +61,8 @@ double calculate(const char * str);
 
 static double eval(const char * buffer, int offset, int * bounds);
 
-static double node(const char * buffer, int offset, int * bounds) {
+static double node(const char * buffer, int offset, int * bounds)
+{
 	int pos = offset + 1; // start from the second char
 	
 	if (buffer[offset] == '(') {
@@ -155,6 +157,7 @@ double calculate(const char * str)
 			(main.c)
 <code language="c">
 #include &lt;stdio.h&gt;
+
 #include "arith.h"
 
 int main(int argc, char * argv[])
