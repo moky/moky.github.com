@@ -39,32 +39,32 @@
 			
 			-------- 下面是“四则运算解析器”的源代码 --------
 			
-			(eval.h/c)
+			(arith.h/c)
 <code language="c">
 //
-//  eval.h
+//  arith.h
 //
-#include <stdlib.h>
-#include <string.h>
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
 
-double eval(const char * str);
+double calculate(const char * str);
 
 //
-//  eval.c
+//  arith.c
 //
-#include "eval.h"
+#include "arith.h"
 
 #ifndef MAXFLOAT
 #define MAXFLOAT    0x1.fffffep+127f
 #endif
 
-static double calculate(const char * buffer, int offset, int * bounds);
+static double eval(const char * buffer, int offset, int * bounds);
 
 static double node(const char * buffer, int offset, int * bounds) {
 	int pos;
 	
 	if (buffer[offset] == '(') {
-		return calculate(buffer, offset + 1, bounds); // calculate sub expression
+		return eval(buffer, offset + 1, bounds); // eval sub expression
 	}
 	if (buffer[offset] == '-') {
 		return -node(buffer, offset + 1, bounds); // format: '-(x)'
@@ -83,7 +83,7 @@ static double node(const char * buffer, int offset, int * bounds) {
 	return atof(buffer + offset);
 }
 
-static double calculate(const char * buffer, int offset, int * bounds)
+static double eval(const char * buffer, int offset, int * bounds)
 {
 	int pos = *bounds;
 	float left = node(buffer, offset, &pos), right;
@@ -120,16 +120,16 @@ static double calculate(const char * buffer, int offset, int * bounds)
 	if (offset >= *bounds) {
 		return left; // finished
 	} else if (buffer[pos] == '+') {
-		return left + calculate(buffer, offset, bounds);
+		return left + eval(buffer, offset, bounds);
 	} else if (buffer[pos] == '-') {
-		return left + calculate(buffer, offset - 1, bounds);
+		return left + eval(buffer, offset - 1, bounds);
 	}
 	
 	// error
 	return MAXFLOAT;
 }
 
-double eval(const char * str)
+double calculate(const char * str)
 {
 	size_t len = strlen(str);
 	char * buffer = (char *)malloc(len + 1);
@@ -146,7 +146,7 @@ double eval(const char * str)
 	}
 	
 	// calculate
-	result = calculate(buffer, 0, &j);
+	result = eval(buffer, 0, &j);
 	free(buffer);
 	return result;
 }
@@ -156,9 +156,8 @@ double eval(const char * str)
 		
 			(main.c)
 <code language="c">
-#include <stdio.h>
-
-#include "eval.h"
+#include &lt;stdio.h&gt;
+#include "arith.h"
 
 int main(int argc, char * argv[])
 {
@@ -174,7 +173,7 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 	
-	result = eval(argv[1]);
+	result = calculate(argv[1]);
 	
 	printf("\n"
 		   "    Result: %lf\n"
