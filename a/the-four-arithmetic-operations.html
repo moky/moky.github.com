@@ -61,16 +61,16 @@ double calculate(const char * str);
 static double eval(const char * buffer, int offset, int * bounds);
 
 static double node(const char * buffer, int offset, int * bounds) {
-	int pos;
+	int pos = offset + 1; // start from the second char
 	
 	if (buffer[offset] == '(') {
-		return eval(buffer, offset + 1, bounds); // eval sub expression
+		return eval(buffer, pos, bounds); // eval sub expression
 	}
 	if (buffer[offset] == '-') {
-		return -node(buffer, offset + 1, bounds); // format: '-(x)'
+		return -node(buffer, pos, bounds); // format: '-(x)'
 	}
 	
-	for (pos = offset + 1; pos < *bounds; ++pos) {
+	for (; pos < *bounds; ++pos) {
 		if (buffer[pos] == '+' ||
 			buffer[pos] == '-' ||
 			buffer[pos] == '*' ||
@@ -86,7 +86,7 @@ static double node(const char * buffer, int offset, int * bounds) {
 static double eval(const char * buffer, int offset, int * bounds)
 {
 	int pos = *bounds;
-	float left = node(buffer, offset, &pos), right;
+	float left = node(buffer, offset, &pos), right; // get left node first
 	
 	// primary operations
 	do {
@@ -98,7 +98,7 @@ static double eval(const char * buffer, int offset, int * bounds)
 			return left; // end sub expression
 		}
 		
-		offset = pos + 1;
+		offset = pos + 1; // next node offset
 		
 		if (buffer[pos] == '*') {
 			pos = *bounds;
