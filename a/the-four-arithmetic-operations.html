@@ -105,7 +105,6 @@ static double eval(const char * buffer, int offset, int * bounds)
 			left *= node(buffer, offset, &pos);
 			continue;
 		}
-		
 		if (buffer[pos] == '/') {
 			pos = *bounds;
 			right = node(buffer, offset, &pos);
@@ -119,7 +118,8 @@ static double eval(const char * buffer, int offset, int * bounds)
 	// secondary operations
 	if (buffer[pos] == '+') {
 		return left + eval(buffer, offset, bounds);
-	} else if (buffer[pos] == '-') {
+	}
+	if (buffer[pos] == '-') {
 		return left + eval(buffer, pos, bounds); // x - y - z &lt;=&gt; x + (-y - z)
 	}
 	
