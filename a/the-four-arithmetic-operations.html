@@ -132,12 +132,12 @@ static double calculate(const char * buffer, int offset, int * bounds)
 double eval(const char * str)
 {
 	size_t len = strlen(str);
-	char * buffer = (char *)malloc(len);
+	char * buffer = (char *)malloc(len + 1);
 	int i, j;
 	double result;
 	
 	// remove white spaces
-	bzero(buffer, len);
+	bzero(buffer, len + 1);
 	for (i = 0, j = 0; i < len; ++i) {
 		if (str[i] != ' ' && str[i] != '\t') {
 			buffer[j] = str[i];
