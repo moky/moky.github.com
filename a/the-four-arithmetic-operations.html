@@ -117,9 +117,7 @@ static double eval(const char * buffer, int offset, int * bounds)
 	} while (1);
 	
 	// secondary operations
-	if (offset >= *bounds) {
-		return left; // finished
-	} else if (buffer[pos] == '+') {
+	if (buffer[pos] == '+') {
 		return left + eval(buffer, offset, bounds);
 	} else if (buffer[pos] == '-') {
 		return left + eval(buffer, offset - 1, bounds);
