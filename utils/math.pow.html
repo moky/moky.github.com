@@ -53,13 +53,11 @@
 			
 			// results
 			function middle_result(x, i, msg) {
-				x = tarsier.Integer.create(x).stringValue();
 				var msg = '<span>' + x + ' ^ ' + i + ' = </span>' + msg;
 				output(msg);
 			}
 			function result(x, y, d) {
-				x = tarsier.Integer.create(x).stringValue();
-				var msg = '<span>' + x + ' ^ ' + y + ' = </span>' + d.stringValue();
+				var msg = '<span>' + x + ' ^ ' + y + ' = </span>' + d;
 				var div = document.getElementById("result");
 				div.innerHTML = "<div>" + msg + "</div>";// + div.innerHTML;
 			}
@@ -70,12 +68,14 @@
 				var y = _y.value;
 				y = int_value(y);
 				
+				x = tarsier.Number.format(x);
+				d = tarsier.Number.format(d.stringValue());
 				if (i >= y) {
 					result(x, i, d);
 				} else if (cache) {
 					middle_result(x, i, "(cache)");
 				} else {
-					middle_result(x, i, d.stringValue());
+					middle_result(x, i, d);
 				}
 			}
 			
