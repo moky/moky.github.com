@@ -48,4 +48,4 @@ for (var i = 0; i < 100; ++i) {
 	setTimeout(prepare_links, 500 * i);
 }
 
-var $_GET = tarsier.uri.parse(document.location.href).params;
+var $_GET = tarsier.URI.parse(document.location.href).params;

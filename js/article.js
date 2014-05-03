@@ -57,7 +57,7 @@ function main() {
 	try {
 		
 		// load template
-		tarsier.http.ajax({
+		tarsier.HTTP.ajax({
 						  url: "../templates/article.html",
 						  dataType: "html",
 						  //cache: false,
