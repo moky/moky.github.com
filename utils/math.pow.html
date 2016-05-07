@@ -80,6 +80,12 @@
 			}
 			
 			function calculate() {
+				
+				if (typeof(tarsier) !== 'object') {
+					alert('Please wait for Tarsier loading...');
+					return;
+				}
+				
 				clear_output();
 				
 				var _x = document.getElementById('x');
